@@ -4,11 +4,11 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@babel/parser": "7.17.12",
+    "@babel/parser": "7.18.5",
     "glob": "8.0.3"
   },
   "peerDependencies": {
-    "cypress": ">=9"
+    "cypress": ">=10"
   },
   "devDependencies": {
     "@semantic-release/changelog": "6.0.1",
@@ -31,9 +31,6 @@
     "semantic-release": "19.0.3",
     "ts-jest": "28.0.5",
     "typescript": "4.7.4"
-  },
-  "publishConfig": {
-    "registry": "https://www.npmjs.com/~expediagroup_oss"
   },
   "scripts": {
     "build": "tsc --skipLibCheck && mkdir -p node_modules/cypress-codegen/dist && cp -r dist package.json node_modules/cypress-codegen",
