@@ -26,6 +26,28 @@ jobs:
 
       - name: Unit Tests
         run: npm run test
+  component:
+    name: ${{ matrix.name }}
+      strategy:
+        fail-fast: false
+        matrix:
+          include:
+            - name: Component Integration
+              command: cypress:component
+            - name: E2E Integration
+              command: cypress:e2e
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: .nvmrc
+
+      - name: Install
+        run: npm ci
 
       - name: Integration Tests
-        run: npm run cypress:run
+        run: npm run ${{ matrix.command }}
