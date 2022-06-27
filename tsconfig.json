@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
-    "declaration": true,
-    "jsx": "react",
-    "lib": ["ES2019", "DOM"],
-    "module": "CommonJS",
     "outDir": "dist",
     "rootDir": "src",
-    "inlineSourceMap": true,
-    "target": "ES6"
+    "declaration": true,
+    "module": "CommonJS",
+    "sourceMap": true,
+    "target": "ES6",
+    "lib": ["ES2019", "DOM"],
+    "jsx": "react"
   },
   "include": ["src", "node_modules/cypress"]
 }

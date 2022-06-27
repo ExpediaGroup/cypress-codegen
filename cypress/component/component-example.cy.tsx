@@ -13,12 +13,14 @@ limitations under the License.
 
 import * as React from 'react';
 
+const componentText = 'Here is a component';
+
 describe('Example Test', () => {
     beforeEach(() => {
-        cy.mount(<p>Here is a component</p>);
+        cy.mount(<p>{componentText}</p>);
     });
 
     it('should import custom commands in component tests', () => {
-        cy.selectElementByText('Here is a component');
+        cy.functionExample(componentText);
     });
 });
