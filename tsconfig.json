@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src",
+    "declaration": true,
+    "module": "CommonJS",
+    "inlineSourceMap": true,
+    "target": "ES6",
+    "lib": ["ES2019", "DOM"]
+  },
+  "include": ["src", "node_modules/cypress"]
+}

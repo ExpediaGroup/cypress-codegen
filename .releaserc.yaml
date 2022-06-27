@@ -1,0 +1,22 @@
+plugins:
+  - - '@semantic-release/commit-analyzer'
+    - preset: angular
+      releaseRules:
+        - breaking: true
+          release: major
+        - type: breaking
+          release: major
+        - type: docs
+          release: patch
+        - type: refactor
+          release: patch
+        - scope: no-release
+          release: false
+  - '@semantic-release/release-notes-generator'
+  - '@semantic-release/npm'
+  - '@semantic-release/github'
+  - '@semantic-release/changelog'
+  - - '@semantic-release/git'
+    - message: "chore(release): v${nextRelease.version} \n\n${nextRelease.notes}"
+branches:
+  - main

@@ -1,51 +1,77 @@
-# New Project Template
+# cypress-codegen
 
-This repository contains a template that can be used to seed a repository for a new open source project.
+A [Cypress](https://www.cypress.io/) plugin which automatically adds and enables IntelliSense for your [custom commands](https://docs.cypress.io/api/cypress-api/custom-commands)!
 
-This template uses the Apache license (Expedia Group's default).
+## Table of Contents
 
-## How to use this template
+-   [Why Do I Need This Plugin?](#why-do-i-need-this-plugin)
+-   [Installation](#installation)
+-   [Usage](#usage)
+-   [Example](#example)
+-   [Configuration](#configuration)
 
-1. In GitHub UI, click "Use this template".
-   - Set the owner is `ExpediaGroup`
-   - Set visibility to `public`
-   - Uncheck "Include all branches"
-2. Clone locally and create a new branch
-3. Code!
-4. Update any applicable files from the template, including `README.md` and `CONTRIBUTING.md`.
-5. Update `.github/dependabot.yml` to also include package updates for any languages used.
-6. Use Actions
-   - A pull request workflow is included but needs to be updated to correctly test and lint the project.
-   - A release workflow is included that will create a tag and release on merges to main. See [Semantic Release](https://github.com/semantic-release/semantic-release) for more information.
-7. Develop your new project!
+## Why Do I Need This Plugin?
 
-## Source Code Headers
+The process for adding Cypress custom commands to test suites is quite manual and involves bloating projects with too much boilerplate code.
+Additionally, custom commands are hard to write because we don't get IntelliSense or the ease of navigating to the command's definition.
+The `cypress-codegen` plugin will dynamically import all of your project's custom commands and will even enable IntelliSense and "go to definition" shortcuts!
 
-Every file containing source code must include copyright and license
-information. This includes any JS/CSS files that you might be serving out to
-browsers (this is to help well-intentioned people avoid accidental copying that
-doesn't comply with the license). Test files are considered source code.
+## Installation
 
-### Apache header
+```shell
+npm i --save-dev cypress-codegen
+```
 
-    Copyright [yyyy] Expedia, Inc.  <-- Remember to replace with the current year here
+## Usage
 
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
+1. Add to `cypress/plugins.ts`:
 
-        https://www.apache.org/licenses/LICENSE-2.0
+```ts
+import { cypressCodegen } from 'cypress-codegen/dist/plugin';
 
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+const plugins: Cypress.PluginConfig = (on, config) => {
+    cypressCodegen(on, config);
 
-## Legal
+    return config;
+};
 
-This project is based on [Google's New Project template](https://github.com/google/new-project).
+export default plugins;
+```
 
-This project is available under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0.html).
+2. Add to `cypress/support.ts`:
 
-Copyright 2021 Expedia, Inc.
+```ts
+import 'cypress-codegen';
+```
+
+3. Put all of your custom commands in `cypress/commands` as regular functions. It is recommended to separate each command into its own file of the same name.
+
+4. Run any Cypress test, and `cypress-codegen` will:
+    - load these functions as valid custom commands
+    - generate a special Cypress type definition for each function which will enable IntelliSense and "go to definition" shortcuts in your Cypress test code
+
+## Example
+
+Check out this project's `cypress` directory for a generic example!
+
+## Configuration
+
+### Javascript
+
+The IntelliSense codegen feature is enabled by default.
+To disable the codegen feature (perhaps for a Javascript Cypress project), set the `CODEGEN` Cypress environment variable to `false`.
+You will still get the benefit of the custom commands being loaded automatically without even having to invoke `Cypress.Commands.add()`!
+
+```shell
+CYPRESS_CODEGEN=false npx cypress run
+```
+
+or in `cypress.json`:
+
+```json
+{
+    "env": {
+        "CODEGEN": false
+    }
+}
+```

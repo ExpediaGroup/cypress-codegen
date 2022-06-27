@@ -6,15 +6,27 @@ on:
       - main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  release:
+    name: Release
+    runs-on: eg-default
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v2
-      - run: |
-          npm install semantic-release semantic-release/git
-          npx semantic-release --debug --no-ci
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: .nvmrc
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Create Release
+        run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
