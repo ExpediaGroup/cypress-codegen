@@ -28,14 +28,14 @@ jobs:
         run: npm run test
   component:
     name: ${{ matrix.name }}
-      strategy:
-        fail-fast: false
-        matrix:
-          include:
-            - name: Component Integration
-              command: cypress:component
-            - name: E2E Integration
-              command: cypress:e2e
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Component Integration
+            command: cypress:component
+          - name: E2E Integration
+            command: cypress:e2e
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
