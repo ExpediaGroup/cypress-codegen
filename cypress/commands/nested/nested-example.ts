@@ -12,7 +12,8 @@ limitations under the License.
 */
 
 export const nestedExample = (input: string) => {
-  cy.log('Here is a custom command in a nested directory!').log(input);
+  cy.log('Here is a custom command in a nested directory!');
+  cy.contains(input);
 };
 
 declare global {

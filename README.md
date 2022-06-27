@@ -54,6 +54,13 @@ import 'cypress-codegen';
 
 Check out this project's `cypress` directory for a generic example!
 
+## Custom Command Chaining
+
+If you want to create custom commands that are meant to be scoped to a previous command's result, put `Scoped` at the
+end of your custom command function name (e.g. `myCustomCommandScoped`). This will set the `prevSubject` option when
+adding the custom command. See the [Cypress docs](https://docs.cypress.io/api/cypress-api/custom-commands#Arguments)
+for more details.
+
 ## Configuration
 
 ### Javascript

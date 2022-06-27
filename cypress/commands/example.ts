@@ -13,10 +13,12 @@ limitations under the License.
 
 export function functionExample(input: string) {
   cy.log('Here is a custom command!');
+  cy.contains(input);
 }
 
 export const arrowFunctionExample = (input: string) => {
-  cy.log('Here is a custom command from an arrow function!').log(input);
+  cy.log('Here is a custom command from an arrow function!');
+  cy.contains(input);
 };
 
 declare global {

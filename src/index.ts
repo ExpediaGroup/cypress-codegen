@@ -11,7 +11,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import Chainable = Cypress.Chainable;
 import { sep } from 'path';
 
 before('Import Custom Commands', () => {
@@ -20,8 +19,13 @@ before('Import Custom Commands', () => {
       // This relative file path is extremely particular and for some unknown reason must be exactly this.
       const customCommandObject = require(`../../../cypress/commands/${filePath.replace(`cypress${sep}commands${sep}`, '')}`);
       const methodNames = Object.keys(customCommandObject);
-      methodNames.forEach(methodName => {
-        Cypress.Commands.add(methodName as keyof Chainable, { prevSubject: 'optional' }, customCommandObject[methodName]);
+      methodNames.forEach((methodName: keyof Cypress.Chainable) => {
+        const method = customCommandObject[methodName];
+        if (methodName.endsWith('Scoped')) {
+          Cypress.Commands.add(methodName, { prevSubject: 'element' }, method);
+        } else {
+          Cypress.Commands.add(methodName, method);
+        }
       });
     });
   });
