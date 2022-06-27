@@ -1,3 +1,9 @@
+# [1.1.0](https://github.com/ExpediaGroup/cypress-codegen/compare/v1.0.1...v1.1.0) (2022-06-27)
+
+### Features
+
+-   support cypress component tests ([#14](https://github.com/ExpediaGroup/cypress-codegen/issues/14)) ([013a789](https://github.com/ExpediaGroup/cypress-codegen/commit/013a7897524c559e32d1d6db71e5e6949e00cde4))
+
 ## [1.0.1](https://github.com/ExpediaGroup/cypress-codegen/compare/v1.0.0...v1.0.1) (2022-06-27)
 
 ### Bug Fixes
