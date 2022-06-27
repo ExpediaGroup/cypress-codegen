@@ -49,7 +49,7 @@ jobs:
       - name: Integration Tests
         uses: cypress-io/github-action@v4
         with:
-          install-command: npm ci --omit=dev --ignore-scripts
+          install: true
           build: npm run build
           browser: chrome
           command: ${{ matrix.command }}
