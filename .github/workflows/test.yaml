@@ -47,7 +47,7 @@ jobs:
           node-version-file: .nvmrc
 
       - name: Install
-        run: npm ci
+        run: npm ci --omit=dev
 
       - name: Integration Tests
         run: npm run ${{ matrix.command }}
