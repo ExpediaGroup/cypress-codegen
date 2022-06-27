@@ -1,3 +1,4 @@
+import { cypressCodegen } from 'cypress-codegen/dist/plugin';
 import { defineConfig } from 'cypress';
 
 export default defineConfig({
@@ -5,10 +6,9 @@ export default defineConfig({
   video: false,
 
   e2e: {
-    // We've imported your old cypress plugins here.
-    // You may want to clean this up later by importing these.
     setupNodeEvents(on, config) {
-      return require('./cypress/plugins/index.ts').default(on, config);
+      cypressCodegen(on, config);
+      return config;
     }
   },
 
@@ -16,6 +16,10 @@ export default defineConfig({
     devServer: {
       framework: 'create-react-app',
       bundler: 'webpack'
+    },
+    setupNodeEvents(on, config) {
+      cypressCodegen(on, config);
+      return config;
     }
   }
 });

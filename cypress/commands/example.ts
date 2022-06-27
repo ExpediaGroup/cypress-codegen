@@ -21,11 +21,16 @@ export const arrowFunctionExample = (input: string) => {
   cy.contains(input);
 };
 
+export const selectElementByText = (text: string) => {
+  cy.contains(text);
+};
+
 declare global {
   namespace Cypress {
     interface Chainable {
       functionExample(input: string): Chainable;
       arrowFunctionExample(input: string): Chainable;
+      selectElementByText(text: string): Chainable;
     }
   }
 }

@@ -11,12 +11,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { cypressCodegen } from 'cypress-codegen/dist/plugin';
+import * as React from 'react';
 
-const plugins: Cypress.PluginConfig = (on, config) => {
-  cypressCodegen(on, config);
+describe('Example Test', () => {
+    beforeEach(() => {
+        cy.mount(<p>Here is a component</p>);
+    });
 
-  return config;
-};
-
-export default plugins;
+    it('should import custom commands in component tests', () => {
+        cy.selectElementByText('Here is a component');
+    });
+});

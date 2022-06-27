@@ -14,7 +14,7 @@ limitations under the License.
 import { sync } from 'glob';
 import { generateTypesFromAbstractSyntaxTree } from './generate-types-from-abstract-syntax-tree';
 import { writeFileSync } from 'fs';
-import { resolve } from 'path';
+import { resolve, sep } from 'path';
 
 export const COMMANDS_DIRECTORY = 'cypress/commands';
 
@@ -35,7 +35,10 @@ export const cypressCodegen: Cypress.PluginConfig = (on: Cypress.PluginEvents, c
 
   on('task', {
     importCustomCommands: () => {
-      return sync(`${COMMANDS_DIRECTORY}/**/*`, { nodir: true });
+      return {
+        filePaths: sync(`${COMMANDS_DIRECTORY}/**/*`, { nodir: true }),
+        commandsDirectory: `cypress${sep}commands${sep}`
+      };
     }
   });
 
