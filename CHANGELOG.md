@@ -1,3 +1,9 @@
+## [1.0.1](https://github.com/ExpediaGroup/cypress-codegen/compare/v1.0.0...v1.0.1) (2022-06-27)
+
+### Bug Fixes
+
+-   scoping bug which ignored custom command inputs ([#15](https://github.com/ExpediaGroup/cypress-codegen/issues/15)) ([caac5fc](https://github.com/ExpediaGroup/cypress-codegen/commit/caac5fc4b800d3eaab31d1dfcc68af0078c67cb6))
+
 # 1.0.0 (2022-06-27)
 
 ### Features
