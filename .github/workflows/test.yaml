@@ -33,9 +33,9 @@ jobs:
       matrix:
         include:
           - name: Component Integration
-            command: cypress:component
+            component: true
           - name: E2E Integration
-            command: cypress:e2e
+            component: false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -46,8 +46,10 @@ jobs:
         with:
           node-version-file: .nvmrc
 
-      - name: Install
-        run: npm ci
-
       - name: Integration Tests
-        run: npm run ${{ matrix.command }}
+        uses: cypress-io/github-action@v4
+        with:
+          install: true
+          build: npm run build
+          browser: chrome
+          component: ${{ matrix.component }}

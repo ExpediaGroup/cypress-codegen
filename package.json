@@ -4,7 +4,9 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@babel/generator": "7.18.2",
     "@babel/parser": "7.18.5",
+    "@babel/types": "7.18.4",
     "glob": "8.0.3"
   },
   "peerDependencies": {
@@ -38,8 +40,8 @@
   "scripts": {
     "build": "tsc --skipLibCheck && mkdir -p node_modules/cypress-codegen/dist && cp -r dist package.json node_modules/cypress-codegen",
     "cypress:open": "cypress open",
-    "cypress:component": "npm run build && cypress run --component",
-    "cypress:e2e": "npm run build && cypress run",
+    "cypress:component": "cypress run --component",
+    "cypress:e2e": "cypress run",
     "format": "prettier --write .",
     "format-check": "prettier .",
     "lint": "eslint --quiet --fix src/**/*",
