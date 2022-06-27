@@ -11,13 +11,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { sep } from 'path';
-
 before('Import Custom Commands', () => {
-  cy.task('importCustomCommands').then((filePaths: string[]) => {
+  cy.task('importCustomCommands').then(({ filePaths, commandsDirectory }: { filePaths: string[]; commandsDirectory: string }) => {
     filePaths.forEach(filePath => {
       // This relative file path is extremely particular and for some unknown reason must be exactly this.
-      const customCommandObject = require(`../../../cypress/commands/${filePath.replace(`cypress${sep}commands${sep}`, '')}`);
+      const customCommandObject = require(`../../../cypress/commands/${filePath.replace(commandsDirectory, '')}`);
       const methodNames = Object.keys(customCommandObject);
       methodNames.forEach((methodName: keyof Cypress.Chainable) => {
         const method = customCommandObject[methodName];

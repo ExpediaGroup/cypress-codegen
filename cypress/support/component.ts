@@ -11,12 +11,19 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { cypressCodegen } from 'cypress-codegen/dist/plugin';
+import 'cypress-codegen';
+import { mount } from 'cypress/react';
 
-const plugins: Cypress.PluginConfig = (on, config) => {
-  cypressCodegen(on, config);
+// Augment the Cypress namespace to include type definitions for
+// your custom command.
+// Alternatively, can be defined in cypress/support/component.d.ts
+// with a <reference path="./component" /> at the top of your spec.
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      mount: typeof mount;
+    }
+  }
+}
 
-  return config;
-};
-
-export default plugins;
+Cypress.Commands.add('mount', mount);

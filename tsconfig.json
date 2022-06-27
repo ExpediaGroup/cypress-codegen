@@ -4,9 +4,10 @@
     "rootDir": "src",
     "declaration": true,
     "module": "CommonJS",
-    "inlineSourceMap": true,
+    "sourceMap": true,
     "target": "ES6",
-    "lib": ["ES2019", "DOM"]
+    "lib": ["ES2019", "DOM"],
+    "jsx": "react"
   },
   "include": ["src", "node_modules/cypress"]
 }
