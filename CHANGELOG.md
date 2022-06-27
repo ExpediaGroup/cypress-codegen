@@ -1,3 +1,9 @@
+## [1.1.1](https://github.com/ExpediaGroup/cypress-codegen/compare/v1.1.0...v1.1.1) (2022-06-27)
+
+### Bug Fixes
+
+-   make @babel/types and @babel/generator direct dependencies ([#16](https://github.com/ExpediaGroup/cypress-codegen/issues/16)) ([1b15b56](https://github.com/ExpediaGroup/cypress-codegen/commit/1b15b5635144d83a314f409599f8b800e3dc6194))
+
 # [1.1.0](https://github.com/ExpediaGroup/cypress-codegen/compare/v1.0.1...v1.1.0) (2022-06-27)
 
 ### Features
