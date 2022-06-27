@@ -7,7 +7,8 @@
     "@babel/generator": "7.18.2",
     "@babel/parser": "7.18.5",
     "@babel/types": "7.18.4",
-    "glob": "8.0.3"
+    "glob": "8.0.3",
+    "prettier": "2.7.1"
   },
   "peerDependencies": {
     "cypress": ">=10"
@@ -29,7 +30,6 @@
     "eslint-plugin-typescript": "0.14.0",
     "husky": "8.0.1",
     "jest": "28.1.1",
-    "prettier": "2.7.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-scripts": "5.0.1",

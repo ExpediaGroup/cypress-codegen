@@ -12,6 +12,7 @@ limitations under the License.
 */
 
 import { parse } from '@babel/parser';
+import { format, resolveConfig } from 'prettier';
 import type {
   AssignmentPattern,
   ExportNamedDeclaration,
@@ -26,7 +27,7 @@ import generate from '@babel/generator';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 
-export const generateTypesFromAbstractSyntaxTree = (filePath: string) => {
+export const generateTypesFromAbstractSyntaxTree = async (filePath: string) => {
   const contents = readFileSync(resolve(filePath)).toString();
   const ast = parse(contents, { sourceType: 'module', plugins: ['typescript'] });
   const currentNodes = ast.program.body;
@@ -58,7 +59,8 @@ export const generateTypesFromAbstractSyntaxTree = (filePath: string) => {
   const newNodes = interfaceExists ? currentNodes.slice(0, currentNodes.length - 1) : currentNodes;
   const { code: existingCode } = generate(t.program(newNodes), { retainLines: true });
   const { code: newCode } = generate(t.program(newInterface));
-  return `${existingCode}\n\n${newCode}\n`;
+  const prettierOptions = await resolveConfig(process.cwd());
+  return `${format(existingCode, prettierOptions)}\n\n${newCode}\n`;
 };
 
 interface CustomCommand {

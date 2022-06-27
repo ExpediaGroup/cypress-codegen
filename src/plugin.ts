@@ -23,8 +23,8 @@ export const cypressCodegen: Cypress.PluginConfig = (on: Cypress.PluginEvents, c
     on('before:browser:launch', (browser, launchOptions) => {
       const filePaths = sync(`${COMMANDS_DIRECTORY}/**/*`, { nodir: true });
 
-      filePaths.forEach(filePath => {
-        const fileContentsWithTypes = generateTypesFromAbstractSyntaxTree(filePath);
+      filePaths.forEach(async filePath => {
+        const fileContentsWithTypes = await generateTypesFromAbstractSyntaxTree(filePath);
 
         writeFileSync(resolve(filePath), fileContentsWithTypes);
       });

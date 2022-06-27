@@ -12,7 +12,7 @@ limitations under the License.
 */
 
 export function functionExample(input: string) {
-  cy.log('Here is a custom command!');
+  cy.log('Here is a custom command!').log('And it preserves my code styling!');
   cy.contains(input);
 }
 
