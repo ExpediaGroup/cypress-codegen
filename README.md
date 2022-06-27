@@ -24,7 +24,9 @@ npm i --save-dev cypress-codegen
 
 ## Usage
 
-1. Add to `cypress/plugins.ts`:
+Model your Cypress project exactly like [the one in this repository](./cypress)!
+
+1. Add to `cypress/plugins/index.ts`:
 
 ```ts
 import { cypressCodegen } from 'cypress-codegen/dist/plugin';
@@ -38,7 +40,7 @@ const plugins: Cypress.PluginConfig = (on, config) => {
 export default plugins;
 ```
 
-2. Add to `cypress/support.ts`:
+2. Add to `cypress/support/component.ts` and/or `cypress/support/e2e.ts`:
 
 ```ts
 import 'cypress-codegen';
