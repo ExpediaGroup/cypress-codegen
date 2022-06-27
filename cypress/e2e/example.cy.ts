@@ -11,20 +11,26 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+const expectedText = 'Kitchen Sink';
+
 describe('Example Test', () => {
+  before(() => {
+    cy.visit('https://example.cypress.io/');
+  });
+
   it('should dynamically import custom commands from functions', () => {
-    cy.functionExample('Functions work!');
+    cy.functionExample(expectedText);
   });
 
   it('should dynamically import custom commands from arrow functions', () => {
-    cy.arrowFunctionExample('Arrow functions work!');
+    cy.arrowFunctionExample(expectedText);
   });
 
   it('should dynamically import nested custom commands', () => {
-    cy.nestedExample('Nested custom commands work!');
+    cy.nestedExample(expectedText);
   });
 
   it('should chain custom commands', () => {
-    cy.log('Custom commands can chain, too!').functionExample('1').arrowFunctionExample('2').nestedExample('3');
+    cy.log(expectedText).functionExample(expectedText).arrowFunctionExample(expectedText).nestedExample(expectedText);
   });
 });
