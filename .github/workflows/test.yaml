@@ -47,7 +47,7 @@ jobs:
           node-version-file: .nvmrc
 
       - name: Install
-        run: npm ci --omit=dev
+        run: npm ci --omit=dev && npm i cypress husky
 
       - name: Integration Tests
         run: npm run ${{ matrix.command }}
