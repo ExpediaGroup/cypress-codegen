@@ -28,4 +28,4 @@ jobs:
         run: npm run test
 
       - name: Integration Tests
-        run: npm run cypress
+        run: npm run cypress:run
