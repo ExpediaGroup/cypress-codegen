@@ -1,7 +1,6 @@
 ---
 name: Feature Request
 about: Please check if there's an open issue for the same or a similar feature.
-
 ---
 
 **Describe the feature**

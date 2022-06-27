@@ -12,5 +12,4 @@ Refer to CONTRIBUTING.md for more details.
 
 ### :pencil: Description
 
-
 ### :link: Related Issues
