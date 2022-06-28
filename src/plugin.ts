@@ -15,16 +15,21 @@ import { sync } from 'glob';
 import { generateTypesFromAbstractSyntaxTree } from './generate-types-from-abstract-syntax-tree';
 import { writeFileSync } from 'fs';
 import { resolve, sep } from 'path';
+import { Options as PrettierConfig } from 'prettier';
 
 export const COMMANDS_DIRECTORY = 'cypress/commands';
 
-export const cypressCodegen: Cypress.PluginConfig = (on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions) => {
+export const cypressCodegen: Cypress.PluginConfig = (
+  on: Cypress.PluginEvents,
+  config: Cypress.PluginConfigOptions,
+  prettierConfig?: PrettierConfig
+) => {
   if (config.env.CODEGEN !== false) {
     on('before:browser:launch', (browser, launchOptions) => {
       const filePaths = sync(`${COMMANDS_DIRECTORY}/**/*`, { nodir: true });
 
-      filePaths.forEach(async filePath => {
-        const fileContentsWithTypes = await generateTypesFromAbstractSyntaxTree(filePath);
+      filePaths.forEach(filePath => {
+        const fileContentsWithTypes = generateTypesFromAbstractSyntaxTree(filePath, prettierConfig);
 
         writeFileSync(resolve(filePath), fileContentsWithTypes);
       });
