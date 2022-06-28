@@ -19,6 +19,10 @@ import { readFileSync } from 'fs';
 jest.mock('fs');
 
 const filePath = 'filePath';
+const prettierConfig = {
+  singleQuote: true,
+  printWidth: 90
+};
 
 describe('generateTypesFromAbstractSyntaxTree', () => {
   it('should generate types when types do not exist', async () => {
@@ -44,7 +48,7 @@ export const arrowFunctionExample = (input1: string) => {
   cy.log('Here is a custom command from an arrow function!').log(input);
 };
 `);
-    const result = generateTypesFromAbstractSyntaxTree(filePath);
+    const result = generateTypesFromAbstractSyntaxTree(filePath, prettierConfig);
     expect(result).toEqual(`// some comment
 
 export function functionExampleOneInput(input1: string) {
@@ -113,11 +117,84 @@ declare global {
   }
 }
 `);
-    const result = generateTypesFromAbstractSyntaxTree(filePath);
+    const result = generateTypesFromAbstractSyntaxTree(filePath, prettierConfig);
     expect(result).toEqual(`// some comment
 
 export function functionExampleOneInput(input1: string) {
   cy.log('Here is a custom command!');
+}
+
+export function functionExampleTwoInputs(input1: string, input2: number) {
+  cy.log('Here is a custom command!');
+}
+
+export function functionExampleOptionalInput(input1: string, input2?: number) {
+  cy.log('Here is a custom command!');
+}
+
+export function functionExampleWithInitializer(input1: string, input2: number = 0) {
+  cy.log('Here is a custom command!');
+}
+
+export const arrowFunctionExample = (input1: string) => {
+  cy.log('Here is a custom command from an arrow function!').log(input);
+};
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      functionExampleOneInput(input1: string): Chainable;
+      functionExampleTwoInputs(input1: string, input2: number): Chainable;
+      functionExampleOptionalInput(input1: string, input2?: number): Chainable;
+      functionExampleWithInitializer(input1: string, input2?: number): Chainable;
+      arrowFunctionExample(input1: string): Chainable;
+    }
+  }
+}
+`);
+  });
+
+  it('should preserve formatting', async () => {
+    (readFileSync as jest.Mock).mockReturnValue(`// some comment
+
+export function functionExampleOneInput(input1: string) {
+  cy.log('Here is a custom command!')
+    .log('With custom formatting')
+    .log('With custom formatting');
+}
+
+export function functionExampleTwoInputs(input1: string, input2: number) {
+  cy.log('Here is a custom command!');
+}
+
+export function functionExampleOptionalInput(input1: string, input2?: number) {
+  cy.log('Here is a custom command!');
+}
+
+export function functionExampleWithInitializer(input1: string, input2: number = 0) {
+  cy.log('Here is a custom command!');
+}
+
+export const arrowFunctionExample = (input1: string) => {
+  cy.log('Here is a custom command from an arrow function!').log(input);
+};
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      something(input1: string): Chainable;
+      somethingElse(input1: string): Chainable;
+    }
+  }
+}
+`);
+    const result = generateTypesFromAbstractSyntaxTree(filePath, prettierConfig);
+    expect(result).toEqual(`// some comment
+
+export function functionExampleOneInput(input1: string) {
+  cy.log('Here is a custom command!')
+    .log('With custom formatting')
+    .log('With custom formatting');
 }
 
 export function functionExampleTwoInputs(input1: string, input2: number) {

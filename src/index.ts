@@ -12,19 +12,24 @@ limitations under the License.
 */
 
 before('Import Custom Commands', () => {
-  cy.task('importCustomCommands').then(({ filePaths, commandsDirectory }: { filePaths: string[]; commandsDirectory: string }) => {
-    filePaths.forEach(filePath => {
-      // This relative file path is extremely particular and for some unknown reason must be exactly this.
-      const customCommandObject = require(`../../../cypress/commands/${filePath.replace(commandsDirectory, '')}`);
-      const methodNames = Object.keys(customCommandObject);
-      methodNames.forEach((methodName: keyof Cypress.Chainable) => {
-        const method = customCommandObject[methodName];
-        if (methodName.endsWith('Scoped')) {
-          Cypress.Commands.add(methodName, { prevSubject: 'element' }, method);
-        } else {
-          Cypress.Commands.add(methodName, method);
-        }
+  cy.task('importCustomCommands').then(
+    ({ filePaths, commandsDirectory }: { filePaths: string[]; commandsDirectory: string }) => {
+      filePaths.forEach(filePath => {
+        // This relative file path is extremely particular and for some unknown reason must be exactly this.
+        const customCommandObject = require(`../../../cypress/commands/${filePath.replace(
+          commandsDirectory,
+          ''
+        )}`);
+        const methodNames = Object.keys(customCommandObject);
+        methodNames.forEach((methodName: keyof Cypress.Chainable) => {
+          const method = customCommandObject[methodName];
+          if (methodName.endsWith('Scoped')) {
+            Cypress.Commands.add(methodName, { prevSubject: 'element' }, method);
+          } else {
+            Cypress.Commands.add(methodName, method);
+          }
+        });
       });
-    });
-  });
+    }
+  );
 });

@@ -31,6 +31,9 @@ describe('Example Test', () => {
   });
 
   it('should chain custom commands', () => {
-    cy.log(expectedText).functionExample(expectedText).arrowFunctionExample(expectedText).nestedExample(expectedText);
+    cy.log(expectedText)
+      .functionExample(expectedText)
+      .arrowFunctionExample(expectedText)
+      .nestedExample(expectedText);
   });
 });

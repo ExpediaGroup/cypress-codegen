@@ -25,19 +25,24 @@ import * as t from '@babel/types';
 import generate from '@babel/generator';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
+import { format, Options } from 'prettier';
 
-export const generateTypesFromAbstractSyntaxTree = (filePath: string) => {
+export const generateTypesFromAbstractSyntaxTree = (filePath: string, prettierConfig?: Options) => {
   const contents = readFileSync(resolve(filePath)).toString();
   const ast = parse(contents, { sourceType: 'module', plugins: ['typescript'] });
   const currentNodes = ast.program.body;
   const customCommands = currentNodes
     .filter(
-      node => t.isExportNamedDeclaration(node) && (t.isFunctionDeclaration(node.declaration) || t.isVariableDeclaration(node.declaration))
+      node =>
+        t.isExportNamedDeclaration(node) &&
+        (t.isFunctionDeclaration(node.declaration) || t.isVariableDeclaration(node.declaration))
     )
     .map((node: ExportNamedDeclaration) => {
       const declaration = node.declaration as FunctionDeclaration | VariableDeclaration;
       const isVariableDeclaration = t.isVariableDeclaration(declaration);
-      const functionIdentifier = isVariableDeclaration ? (declaration.declarations[0].id as Identifier) : declaration.id;
+      const functionIdentifier = isVariableDeclaration
+        ? (declaration.declarations[0].id as Identifier)
+        : declaration.id;
       const functionParameters = isVariableDeclaration
         ? (declaration.declarations[0].init as FunctionExpression).params
         : declaration.params;
@@ -57,8 +62,9 @@ export const generateTypesFromAbstractSyntaxTree = (filePath: string) => {
   const interfaceExists = t.isTSModuleDeclaration(lastNode) && lastNode.global && lastNode.declare;
   const newNodes = interfaceExists ? currentNodes.slice(0, currentNodes.length - 1) : currentNodes;
   const { code: existingCode } = generate(t.program(newNodes), { retainLines: true });
+  const formattedExistingCode = format(existingCode, { parser: 'babel', ...prettierConfig });
   const { code: newCode } = generate(t.program(newInterface));
-  return `${existingCode}\n\n${newCode}\n`;
+  return `${formattedExistingCode}\n${newCode}\n`;
 };
 
 interface CustomCommand {
@@ -85,7 +91,12 @@ const generateInterface = (customCommands: CustomCommand[]): Statement[] => {
             null,
             t.tsInterfaceBody(
               customCommands.map(({ functionIdentifier, parameters }) =>
-                t.tsMethodSignature(functionIdentifier, null, parameters, t.tsTypeAnnotation(t.tsTypeReference(t.identifier('Chainable'))))
+                t.tsMethodSignature(
+                  functionIdentifier,
+                  null,
+                  parameters,
+                  t.tsTypeAnnotation(t.tsTypeReference(t.identifier('Chainable')))
+                )
               )
             )
           )
