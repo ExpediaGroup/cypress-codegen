@@ -21,7 +21,7 @@ jest.mock('fs');
 const filePath = 'filePath';
 const prettierConfig = {
   singleQuote: true,
-  printWidth: 140
+  printWidth: 90
 };
 
 describe('generateTypesFromAbstractSyntaxTree', () => {
@@ -160,9 +160,6 @@ declare global {
 export function functionExampleOneInput(input1: string) {
   cy.log('Here is a custom command!')
     .log('With custom formatting')
-    .log('With custom formatting')
-    .log('With custom formatting')
-    .log('With custom formatting')
     .log('With custom formatting');
 }
 
@@ -196,9 +193,6 @@ declare global {
 
 export function functionExampleOneInput(input1: string) {
   cy.log('Here is a custom command!')
-    .log('With custom formatting')
-    .log('With custom formatting')
-    .log('With custom formatting')
     .log('With custom formatting')
     .log('With custom formatting');
 }
