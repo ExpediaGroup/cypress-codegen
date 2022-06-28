@@ -76,6 +76,17 @@ end of your custom command function name (e.g. `myCustomCommandScoped`). This wi
 adding the custom command. See the [Cypress docs](https://docs.cypress.io/api/cypress-api/custom-commands#Arguments)
 for more details.
 
+## Code Styling
+
+`cypress-codegen` will attempt to read your `prettierrc` config by default.
+However, you may pass a config override in the cypress.config.ts invocation:
+```ts
+setupNodeEvents(on, config) {
+    cypressCodegen(on, config, prettierConfigOverride);
+    return config;
+}
+```
+
 ## Configuration
 
 ### Javascript
