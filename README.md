@@ -80,6 +80,7 @@ for more details.
 
 `cypress-codegen` will attempt to read your `prettierrc` config by default.
 However, you may pass a config override in the cypress.config.ts invocation:
+
 ```ts
 setupNodeEvents(on, config) {
     cypressCodegen(on, config, prettierConfigOverride);
