@@ -18,7 +18,7 @@ export function functionExample(input: string) {
   cy.contains(input);
 }
 
-export function functionExampleScoped(element: any, input: string) {
+export function functionExampleScoped(element: Cypress.JQueryWithSelector, input: string) {
   cy.log('Here is a scoped custom command!');
   cy.wrap(element).should('have.text', input);
 }
@@ -32,7 +32,7 @@ declare global {
   namespace Cypress {
     interface Chainable {
       functionExample(input: string): Chainable;
-      functionExampleScoped(element: any, input: string): Chainable;
+      functionExampleScoped(input: string): Chainable;
       arrowFunctionExample(input: string): Chainable;
     }
   }

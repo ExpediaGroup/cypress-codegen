@@ -26,7 +26,7 @@ describe('Example Test', () => {
     cy.arrowFunctionExample(expectedText);
   });
 
-  it('should dynamically import custom commands from arrow functions', () => {
+  it('should support scoped methods', () => {
     cy.contains(expectedText).functionExampleScoped(expectedText);
   });
 

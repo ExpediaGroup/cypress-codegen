@@ -16,8 +16,7 @@ import { generateTypesFromAbstractSyntaxTree } from './generate-types-from-abstr
 import { writeFileSync } from 'fs';
 import { resolve, sep } from 'path';
 import { Options as PrettierConfig, resolveConfig } from 'prettier';
-
-export const COMMANDS_DIRECTORY = 'cypress/commands';
+import { COMMANDS_DIRECTORY } from './common';
 
 export type CypressCodegen = (
   on: Cypress.PluginEvents,
