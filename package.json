@@ -14,8 +14,6 @@
     "cypress": ">=10"
   },
   "devDependencies": {
-    "@semantic-release/changelog": "6.0.1",
-    "@semantic-release/git": "10.0.1",
     "@types/glob": "7.2.0",
     "@types/jest": "28.1.4",
     "cypress": "10.2.0",
