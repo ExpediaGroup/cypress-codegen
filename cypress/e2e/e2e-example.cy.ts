@@ -26,6 +26,10 @@ describe('Example Test', () => {
     cy.arrowFunctionExample(expectedText);
   });
 
+  it('should dynamically import custom commands from arrow functions', () => {
+    cy.contains(expectedText).functionExampleScoped(expectedText);
+  });
+
   it('should dynamically import nested custom commands', () => {
     cy.nestedExample(expectedText);
   });
