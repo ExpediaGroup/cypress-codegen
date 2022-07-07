@@ -26,6 +26,7 @@ import generate from '@babel/generator';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import { format, Options } from 'prettier';
+import { isScopedMethod } from './common';
 
 export const generateTypesFromAbstractSyntaxTree = (filePath: string, prettierConfig?: Options) => {
   const contents = readFileSync(resolve(filePath)).toString();
@@ -52,9 +53,10 @@ export const generateTypesFromAbstractSyntaxTree = (filePath: string, prettierCo
         }
         return parameter as Identifier;
       });
+      const firstParamOmitted = parameters.slice(1);
       return {
         functionIdentifier,
-        parameters
+        parameters: isScopedMethod(functionIdentifier.name) ? firstParamOmitted : parameters
       };
     });
   const newInterface = generateInterface(customCommands);

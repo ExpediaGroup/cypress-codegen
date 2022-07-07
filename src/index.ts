@@ -11,6 +11,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import { isScopedMethod } from './common';
+
 before('Import Custom Commands', () => {
   cy.task('importCustomCommands').then(
     ({ filePaths, commandsDirectory }: { filePaths: string[]; commandsDirectory: string }) => {
@@ -23,7 +25,7 @@ before('Import Custom Commands', () => {
         const methodNames = Object.keys(customCommandObject);
         methodNames.forEach((methodName: keyof Cypress.Chainable) => {
           const method = customCommandObject[methodName];
-          if (methodName.endsWith('Scoped')) {
+          if (isScopedMethod(methodName)) {
             Cypress.Commands.add(methodName, { prevSubject: 'element' }, method);
           } else {
             Cypress.Commands.add(methodName, method);

@@ -226,4 +226,34 @@ declare global {
 }
 `);
   });
+
+  it('should generate a special type for scoped commands', async () => {
+    (readFileSync as jest.Mock).mockReturnValue(`// some comment
+
+export function functionExampleScoped(
+  element: Cypress.JQueryWithSelector,
+  input1: string
+) {
+  cy.log('Here is a scoped custom command!');
+}
+`);
+    const result = generateTypesFromAbstractSyntaxTree(filePath, prettierConfig);
+    expect(result).toEqual(`// some comment
+
+export function functionExampleScoped(
+  element: Cypress.JQueryWithSelector,
+  input1: string
+) {
+  cy.log('Here is a scoped custom command!');
+}
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      functionExampleScoped(input1: string): Chainable;
+    }
+  }
+}
+`);
+  });
 });
