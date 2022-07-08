@@ -17,8 +17,9 @@ before('Import Custom Commands', () => {
   cy.task('importCustomCommands').then(
     ({ filePaths, commandsDirectory }: { filePaths: string[]; commandsDirectory: string }) => {
       filePaths.forEach(filePath => {
+        const projectName = Cypress.env('PROJECT') ? `${Cypress.env('PROJECT')}/` : '';
         // This relative file path is extremely particular and for some unknown reason must be exactly this.
-        const customCommandObject = require(`../../../cypress/commands/${filePath.replace(
+        const customCommandObject = require(`../../../${projectName}cypress/commands/${filePath.replace(
           commandsDirectory,
           ''
         )}`);
