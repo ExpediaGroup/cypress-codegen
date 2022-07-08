@@ -90,6 +90,18 @@ setupNodeEvents(on, config) {
 
 ## Configuration
 
+### Project Flag
+
+If you are using the `--project` flag when starting Cypress, you will need to set the Cypress environment variable `PROJECT` to your project name.
+
+In cypress.config.ts:
+
+```ts
+env: {
+    PROJECT: 'my-project';
+}
+```
+
 ### Javascript
 
 The IntelliSense codegen feature is enabled by default.
@@ -100,12 +112,10 @@ You will still get the benefit of the custom commands being loaded automatically
 CYPRESS_CODEGEN=false npx cypress run
 ```
 
-or in `cypress.json`:
+or in `cypress.config.js`:
 
-```json
-{
-    "env": {
-        "CODEGEN": false
-    }
+```ts
+env: {
+    CODEGEN: false;
 }
 ```
