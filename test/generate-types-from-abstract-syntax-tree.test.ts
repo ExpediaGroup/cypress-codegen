@@ -256,4 +256,15 @@ declare global {
 }
 `);
   });
+
+  it('should throw descriptive error for object-destructured input', async () => {
+    (readFileSync as jest.Mock).mockReturnValue(`
+
+export const objectDestructureExample = ({ input1, input2 }: { input1: string; input2: string }) => {
+  cy.log(input1);
+  cy.log(input2);
+};
+`);
+    expect(() => generateTypesFromAbstractSyntaxTree(filePath, prettierConfig)).toThrowError();
+  });
 });

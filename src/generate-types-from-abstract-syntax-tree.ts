@@ -92,14 +92,17 @@ const generateInterface = (customCommands: CustomCommand[]): Statement[] => {
             null,
             null,
             t.tsInterfaceBody(
-              customCommands.map(({ functionIdentifier, parameters }) =>
-                t.tsMethodSignature(
+              customCommands.map(({ functionIdentifier, parameters }) => {
+                if (parameters.some(parameter => t.isObjectPattern(parameter))) {
+                  throw new Error('Object destructuring in function parameters is not supported.');
+                }
+                return t.tsMethodSignature(
                   functionIdentifier,
                   null,
                   parameters,
                   t.tsTypeAnnotation(t.tsTypeReference(t.identifier('Chainable')))
-                )
-              )
+                );
+              })
             )
           )
         ])
