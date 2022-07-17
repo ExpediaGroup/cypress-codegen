@@ -1,8 +1,15 @@
 {
   "name": "cypress-codegen",
-  "version": "1.1.2",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ExpediaGroup/cypress-codegen.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ExpediaGroup/cypress-codegen/issues"
+  },
+  "license": "Apache-2.0",
   "dependencies": {
     "@babel/generator": "7.18.7",
     "@babel/parser": "7.18.8",
