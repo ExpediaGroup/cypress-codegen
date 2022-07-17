@@ -1,5 +1,9 @@
 # cypress-codegen
 
+[![GitHub Actions CI](https://github.com/ExpediaGroup/cypress-codegen/workflows/Release/badge.svg)](https://github.com/ExpediaGroup/cypress-codegen/actions?query=workflow%3ARelease)
+[![npm version](https://badge.fury.io/js/cypress-codegen.svg)](https://www.npmjs.com/package/cypress-codegen)
+[![Downloads](https://img.shields.io/npm/dm/cypress-codegen.svg)](https://www.npmjs.com/package/cypress-codegen)
+
 A [Cypress](https://www.cypress.io/) plugin which automatically adds and enables IntelliSense for your [custom commands](https://docs.cypress.io/api/cypress-api/custom-commands)!
 
 ## Table of Contents
@@ -24,7 +28,7 @@ npm i --save-dev cypress-codegen
 
 ## Usage
 
-Model your Cypress project exactly like [the one in this repository](cypress.config.ts)!
+Model your Cypress project exactly like [the one in this repository](https://github.com/ExpediaGroup/cypress-codegen/blob/main/cypress.config.ts)!
 
 1. Add the required plugin code to `cypress.config.ts` like so:
 
