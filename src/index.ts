@@ -13,26 +13,34 @@ limitations under the License.
 
 import { isScopedMethod } from './common';
 
+interface TaskResult {
+  filePaths: string[];
+  commandsDirectory: string;
+}
+
 before('Import Custom Commands', () => {
-  cy.task('importCustomCommands').then(
-    ({ filePaths, commandsDirectory }: { filePaths: string[]; commandsDirectory: string }) => {
-      filePaths.forEach(filePath => {
-        const projectName = Cypress.env('PROJECT') ? `${Cypress.env('PROJECT')}/` : '';
-        // This relative file path is extremely particular and for some unknown reason must be exactly this.
-        const customCommandObject = require(`../../../${projectName}cypress/commands/${filePath.replace(
-          commandsDirectory,
-          ''
-        )}`);
-        const methodNames = Object.keys(customCommandObject);
-        methodNames.forEach((methodName: keyof Cypress.Chainable) => {
-          const method = customCommandObject[methodName];
-          if (isScopedMethod(methodName)) {
-            Cypress.Commands.add(methodName, { prevSubject: 'element' }, method);
-          } else {
-            Cypress.Commands.add(methodName, method);
-          }
-        });
+  cy.task('importCustomCommands').then((result: unknown) => {
+    const { filePaths, commandsDirectory } = result as TaskResult;
+    filePaths.forEach(filePath => {
+      const projectName = Cypress.env('PROJECT') ? `${Cypress.env('PROJECT')}/` : '';
+      // This relative file path is extremely particular and for some unknown reason must be exactly this.
+      const customCommandObject = require(`../../../${projectName}cypress/commands/${filePath.replace(
+        commandsDirectory,
+        ''
+      )}`);
+      const methodNames = Object.keys(customCommandObject);
+      methodNames.forEach(methodName => {
+        const method = customCommandObject[methodName];
+        if (isScopedMethod(methodName)) {
+          Cypress.Commands.add(
+            methodName as keyof Cypress.Chainable,
+            { prevSubject: 'element' },
+            method
+          );
+        } else {
+          Cypress.Commands.add(methodName as keyof Cypress.Chainable, method);
+        }
       });
-    }
-  );
+    });
+  });
 });

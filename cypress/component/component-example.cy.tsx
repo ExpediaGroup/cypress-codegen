@@ -16,36 +16,36 @@ import * as React from 'react';
 const componentText = 'Here is a component';
 
 describe('Example Test', () => {
-    beforeEach(() => {
-        cy.mount(<p>{componentText}</p>);
-    });
+  beforeEach(() => {
+    cy.mount(<p>{componentText}</p>);
+  });
 
-    it('should import custom commands in component tests', () => {
-        cy.functionExample(componentText);
-    });
+  it('should import custom commands in component tests', () => {
+    cy.functionExample(componentText);
+  });
 
-    it('should dynamically import custom commands from arrow functions', () => {
-        cy.arrowFunctionExample(componentText);
-    });
+  it('should dynamically import custom commands from arrow functions', () => {
+    cy.arrowFunctionExample(componentText);
+  });
 
-    it('should support scoped methods', () => {
-        cy.contains(componentText).functionExampleScoped(componentText);
-    });
+  it('should support scoped methods', () => {
+    cy.contains(componentText).functionExampleScoped(componentText);
+  });
 
-    it('should dynamically import nested custom commands', () => {
-        cy.nestedExample(componentText);
-    });
+  it('should dynamically import nested custom commands', () => {
+    cy.nestedExample(componentText);
+  });
 
-    it('should chain custom commands', () => {
-        cy.log(componentText)
-            .functionExample(componentText)
-            .arrowFunctionExample(componentText)
-            .nestedExample(componentText);
-    });
+  it('should chain custom commands', () => {
+    cy.log(componentText)
+      .functionExample(componentText)
+      .arrowFunctionExample(componentText)
+      .nestedExample(componentText);
+  });
 
-    it('should support custom mount commands', () => {
-        const myComponent = () => <>{'Different text'}</>;
-        cy.customMount(myComponent);
-        cy.contains('Different text');
-    });
+  it('should support custom mount commands', () => {
+    const myComponent = () => <>{'Different text'}</>;
+    cy.customMount(myComponent);
+    cy.contains('Different text');
+  });
 });
