@@ -23,4 +23,29 @@ describe('Example Test', () => {
     it('should import custom commands in component tests', () => {
         cy.functionExample(componentText);
     });
+
+    it('should dynamically import custom commands from arrow functions', () => {
+        cy.arrowFunctionExample(componentText);
+    });
+
+    it('should support scoped methods', () => {
+        cy.contains(componentText).functionExampleScoped(componentText);
+    });
+
+    it('should dynamically import nested custom commands', () => {
+        cy.nestedExample(componentText);
+    });
+
+    it('should chain custom commands', () => {
+        cy.log(componentText)
+            .functionExample(componentText)
+            .arrowFunctionExample(componentText)
+            .nestedExample(componentText);
+    });
+
+    it('should support custom mount commands', () => {
+        const myComponent = () => <>{'Different text'}</>;
+        cy.customMount(myComponent);
+        cy.contains('Different text');
+    });
 });

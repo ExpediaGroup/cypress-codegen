@@ -30,7 +30,7 @@ import { isScopedMethod } from './common';
 
 export const generateTypesFromAbstractSyntaxTree = (filePath: string, prettierConfig?: Options) => {
   const contents = readFileSync(resolve(filePath)).toString();
-  const ast = parse(contents, { sourceType: 'module', plugins: ['typescript'] });
+  const ast = parse(contents, { sourceType: 'module', plugins: ['typescript', 'jsx'] });
   const currentNodes = ast.program.body;
   const customCommands = currentNodes
     .filter(
