@@ -41,7 +41,7 @@ jobs:
       - name: Install
         run: npm ci
 
-      - name: Lint
+      - name: Run cypress-codegen
         run: npm run cli
 
       - name: Check generated types match git
