@@ -15,7 +15,7 @@ import { sync } from 'glob';
 import { sep } from 'path';
 import { Options as PrettierConfig } from 'prettier';
 import { COMMANDS_DIRECTORY } from './common';
-import {codegen} from "./codegen";
+import { codegen } from './codegen';
 
 export type CypressCodegen = (
   on: Cypress.PluginEvents,
