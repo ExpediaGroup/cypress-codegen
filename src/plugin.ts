@@ -32,7 +32,7 @@ export const cypressCodegen: CypressCodegen = (
   if (config.env.CODEGEN !== false) {
     on('before:browser:launch', (browser, launchOptions) => {
       const filePaths = sync(`${COMMANDS_DIRECTORY}/**/*`, { nodir: true });
-      const prettierConfig = prettierConfigOverride ?? resolveConfig.sync(process.cwd());
+      const prettierConfig = prettierConfigOverride ?? resolveConfig.sync(process.cwd()) ?? {};
 
       filePaths.forEach(filePath => {
         const fileContentsWithTypes = generateTypesFromAbstractSyntaxTree(filePath, prettierConfig);
