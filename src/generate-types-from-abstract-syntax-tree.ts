@@ -28,7 +28,7 @@ import { resolve } from 'path';
 import { format, Options } from 'prettier';
 import { isScopedMethod } from './common';
 
-export const generateTypesFromAbstractSyntaxTree = (filePath: string, prettierConfig?: Options) => {
+export const generateTypesFromAbstractSyntaxTree = (filePath: string, prettierConfig: Options) => {
   const contents = readFileSync(resolve(filePath)).toString();
   const ast = parse(contents, { sourceType: 'module', plugins: ['typescript', 'jsx'] });
   const currentNodes = ast.program.body;
@@ -56,10 +56,10 @@ export const generateTypesFromAbstractSyntaxTree = (filePath: string, prettierCo
       const firstParamOmitted = parameters.slice(1);
       return {
         functionIdentifier,
-        parameters: isScopedMethod(functionIdentifier.name) ? firstParamOmitted : parameters
+        parameters: isScopedMethod(functionIdentifier?.name) ? firstParamOmitted : parameters
       };
     });
-  const newInterface = generateInterface(customCommands);
+  const newInterface = generateInterface(customCommands as CustomCommand[]);
   const lastNode = currentNodes[currentNodes.length - 1];
   const interfaceExists = t.isTSModuleDeclaration(lastNode) && lastNode.global && lastNode.declare;
   const newNodes = interfaceExists ? currentNodes.slice(0, currentNodes.length - 1) : currentNodes;

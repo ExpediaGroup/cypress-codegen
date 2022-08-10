@@ -8,11 +8,11 @@ A [Cypress](https://www.cypress.io/) plugin which automatically adds and enables
 
 ## Table of Contents
 
--   [Why Do I Need This Plugin?](#why-do-i-need-this-plugin)
--   [Installation](#installation)
--   [Usage](#usage)
--   [Example](#example)
--   [Configuration](#configuration)
+- [Why Do I Need This Plugin?](#why-do-i-need-this-plugin)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Example](#example)
+- [Configuration](#configuration)
 
 ## Why Do I Need This Plugin?
 
@@ -37,23 +37,23 @@ import { cypressCodegen } from 'cypress-codegen/dist/plugin';
 import { defineConfig } from 'cypress';
 
 export default defineConfig({
-    e2e: {
-        setupNodeEvents(on, config) {
-            cypressCodegen(on, config);
-            return config;
-        }
-    },
-
-    component: {
-        setupNodeEvents(on, config) {
-            cypressCodegen(on, config);
-            return config;
-        },
-        devServer: {
-            framework: 'create-react-app',
-            bundler: 'webpack'
-        }
+  e2e: {
+    setupNodeEvents(on, config) {
+      cypressCodegen(on, config);
+      return config;
     }
+  },
+
+  component: {
+    setupNodeEvents(on, config) {
+      cypressCodegen(on, config);
+      return config;
+    },
+    devServer: {
+      framework: 'create-react-app',
+      bundler: 'webpack'
+    }
+  }
 });
 ```
 
@@ -66,8 +66,8 @@ import 'cypress-codegen';
 3. Put all of your custom commands in `cypress/commands` as regular functions. It is recommended to separate each command into its own file of the same name.
 
 4. Run any Cypress test, and `cypress-codegen` will:
-    - load these functions as valid custom commands
-    - generate a special Cypress type definition for each function which will enable IntelliSense and "go to definition" shortcuts in your Cypress test code
+   - load these functions as valid custom commands
+   - generate a special Cypress type definition for each function which will enable IntelliSense and "go to definition" shortcuts in your Cypress test code
 
 ## Example
 
@@ -102,7 +102,7 @@ In cypress.config.ts:
 
 ```ts
 env: {
-    PROJECT: 'my-project';
+  PROJECT: 'my-project';
 }
 ```
 
@@ -120,6 +120,6 @@ or in `cypress.config.js`:
 
 ```ts
 env: {
-    CODEGEN: false;
+  CODEGEN: false;
 }
 ```
