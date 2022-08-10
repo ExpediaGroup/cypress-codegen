@@ -20,7 +20,8 @@ if (options.prettierConfig) {
   try {
     prettierConfig = JSON.parse(options.prettierConfig);
   } catch (error) {
-    console.error(chalk.red(`The provided prettier config was invalid: ${error.message}`));
+    console.error(chalk.red('The provided prettier config was invalid'));
+    console.error(error);
     process.exit(1);
   }
 }
