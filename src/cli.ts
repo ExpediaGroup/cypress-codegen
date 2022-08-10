@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /* eslint-disable no-console */
 import * as chalk from 'chalk';
 import { program } from 'commander';

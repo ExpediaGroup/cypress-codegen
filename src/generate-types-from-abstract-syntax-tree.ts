@@ -38,8 +38,11 @@ export const generateTypesFromAbstractSyntaxTree = (filePath: string, prettierCo
         t.isExportNamedDeclaration(node) &&
         (t.isFunctionDeclaration(node.declaration) || t.isVariableDeclaration(node.declaration))
     )
-    .map((node: ExportNamedDeclaration) => {
-      const declaration = node.declaration as FunctionDeclaration | VariableDeclaration;
+    .map(node => {
+      const exportNamedDeclaration = node as ExportNamedDeclaration;
+      const declaration = exportNamedDeclaration.declaration as
+        | FunctionDeclaration
+        | VariableDeclaration;
       const isVariableDeclaration = t.isVariableDeclaration(declaration);
       const functionIdentifier = isVariableDeclaration
         ? (declaration.declarations[0].id as Identifier)

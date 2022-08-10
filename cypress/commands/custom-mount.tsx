@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export const customMount = (Component: React.ReactElement) => {
+export const customMount = (Component: React.FC) => {
   cy.mount(
     <div>
       <Component />
@@ -11,7 +11,7 @@ export const customMount = (Component: React.ReactElement) => {
 declare global {
   namespace Cypress {
     interface Chainable {
-      customMount(Component: React.ReactElement): Chainable;
+      customMount(Component: React.FC): Chainable;
     }
   }
 }

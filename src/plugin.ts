@@ -12,19 +12,33 @@ limitations under the License.
 */
 
 import { sync } from 'glob';
-import { sep } from 'path';
-import { Options as PrettierConfig } from 'prettier';
+import { generateTypesFromAbstractSyntaxTree } from './generate-types-from-abstract-syntax-tree';
+import { writeFileSync } from 'fs';
+import { resolve, sep } from 'path';
+import { Options as PrettierConfig, resolveConfig } from 'prettier';
 import { COMMANDS_DIRECTORY } from './common';
-import { codegen } from './codegen';
 
-export const cypressCodegen = (
+export type CypressCodegen = (
+  on: Cypress.PluginEvents,
+  config: Cypress.PluginConfigOptions,
+  prettierConfigOverride?: PrettierConfig
+) => void;
+
+export const cypressCodegen: CypressCodegen = (
   on: Cypress.PluginEvents,
   config: Cypress.PluginConfigOptions,
   prettierConfigOverride?: PrettierConfig
 ) => {
   if (config.env.CODEGEN !== false) {
     on('before:browser:launch', (browser, launchOptions) => {
-      codegen(prettierConfigOverride);
+      const filePaths = sync(`${COMMANDS_DIRECTORY}/**/*`, { nodir: true });
+      const prettierConfig = prettierConfigOverride ?? resolveConfig.sync(process.cwd()) ?? {};
+
+      filePaths.forEach(filePath => {
+        const fileContentsWithTypes = generateTypesFromAbstractSyntaxTree(filePath, prettierConfig);
+        writeFileSync(resolve(filePath), fileContentsWithTypes);
+      });
+
       return launchOptions;
     });
   }
