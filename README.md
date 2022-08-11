@@ -4,7 +4,7 @@
 [![npm version](https://badge.fury.io/js/cypress-codegen.svg)](https://www.npmjs.com/package/cypress-codegen)
 [![Downloads](https://img.shields.io/npm/dm/cypress-codegen.svg)](https://www.npmjs.com/package/cypress-codegen)
 
-A [Cypress](https://www.cypress.io/) plugin which automatically adds and enables IntelliSense for your [custom commands](https://docs.cypress.io/api/cypress-api/custom-commands)!
+A [Cypress](https://www.cypress.io/) plugin and CLI tool which automatically adds and enables IntelliSense for your [custom commands](https://docs.cypress.io/api/cypress-api/custom-commands)!
 
 ## Table of Contents
 
@@ -26,7 +26,7 @@ The `cypress-codegen` plugin will dynamically import all of your project's custo
 npm i --save-dev cypress-codegen
 ```
 
-## Usage
+## Plugin Usage
 
 Model your Cypress project exactly like [the one in this repository](https://github.com/ExpediaGroup/cypress-codegen/blob/main/cypress.config.ts)!
 
@@ -91,6 +91,12 @@ setupNodeEvents(on, config) {
     return config;
 }
 ```
+
+## Command Line Usage
+
+You can also run `cypress-codegen` in your terminal to generate types for your Cypress project!
+
+Optionally pass the `--prettier-config` flag to pass in a stringified prettier config object.
 
 ## Configuration
 
