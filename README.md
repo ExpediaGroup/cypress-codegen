@@ -33,7 +33,7 @@ Model your Cypress project exactly like [the one in this repository](https://git
 1. Add the required plugin code to `cypress.config.ts` like so:
 
 ```ts
-import { cypressCodegen } from 'cypress-codegen/dist/plugin';
+import { cypressCodegen } from 'cypress-codegen';
 import { defineConfig } from 'cypress';
 
 export default defineConfig({
