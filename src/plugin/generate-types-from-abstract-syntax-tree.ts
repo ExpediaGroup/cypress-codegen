@@ -26,7 +26,7 @@ import generate from '@babel/generator';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import { format, Options } from 'prettier';
-import { isScopedMethod } from './common';
+import { isScopedMethod } from '../common';
 
 export const generateTypesFromAbstractSyntaxTree = (filePath: string, prettierConfig: Options) => {
   const contents = readFileSync(resolve(filePath)).toString();

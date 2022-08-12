@@ -10,5 +10,5 @@
     "lib": ["ES2019", "DOM"],
     "jsx": "react"
   },
-  "include": ["src", "node_modules/cypress"]
+  "include": ["src", "plugin", "node_modules/cypress"]
 }

@@ -1,5 +1,5 @@
 import { sync } from 'glob';
-import { COMMANDS_DIRECTORY } from './common';
+import { COMMANDS_DIRECTORY } from '../common';
 import { resolveConfig, Options as PrettierConfig } from 'prettier';
 import { generateTypesFromAbstractSyntaxTree } from './generate-types-from-abstract-syntax-tree';
 import { writeFileSync } from 'fs';

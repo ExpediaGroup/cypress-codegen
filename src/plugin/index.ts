@@ -14,7 +14,7 @@ limitations under the License.
 import { sync } from 'glob';
 import { sep } from 'path';
 import { Options as PrettierConfig } from 'prettier';
-import { COMMANDS_DIRECTORY } from './common';
+import { COMMANDS_DIRECTORY } from '../common';
 import { codegen } from './codegen';
 
 export type CypressCodegen = (
