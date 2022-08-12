@@ -1,4 +1,4 @@
-import { cypressCodegen } from 'cypress-codegen';
+import { cypressCodegen } from 'cypress-codegen/plugin';
 import { defineConfig } from 'cypress';
 
 export default defineConfig({

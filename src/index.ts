@@ -44,5 +44,3 @@ before('Import Custom Commands', () => {
     });
   });
 });
-
-export { cypressCodegen } from './plugin';

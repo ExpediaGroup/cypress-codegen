@@ -3,7 +3,7 @@
 /* eslint-disable no-console */
 import * as chalk from 'chalk';
 import { program } from 'commander';
-import { codegen } from './codegen';
+import { codegen } from './plugin/codegen';
 
 console.log(chalk.yellowBright('Generating custom command types...'));
 
