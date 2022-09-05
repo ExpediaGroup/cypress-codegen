@@ -28,7 +28,7 @@
     "cypress": ">=10"
   },
   "devDependencies": {
-    "@types/glob": "7.2.0",
+    "@types/glob": "8.0.0",
     "@types/jest": "28.1.7",
     "@types/react": "18.0.17",
     "cypress": "10.6.0",
