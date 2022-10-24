@@ -18,7 +18,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@babel/core": "7.19.3",
+    "@babel/core": "7.19.6",
     "chalk": "4.1.2",
     "commander": "9.4.1",
     "glob": "8.0.3",
