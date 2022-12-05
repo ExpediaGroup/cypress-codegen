@@ -72,7 +72,7 @@ jobs:
           node-version-file: .nvmrc
 
       - name: Integration Tests
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v5
         with:
           install: true
           build: npm run build
