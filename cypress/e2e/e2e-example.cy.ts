@@ -14,7 +14,7 @@ limitations under the License.
 const expectedText = 'Kitchen Sink';
 
 describe('Example Test', () => {
-  before(() => {
+  beforeEach(() => {
     cy.visit('https://example.cypress.io/');
   });
 
