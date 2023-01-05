@@ -67,7 +67,7 @@ export const generateTypesFromAbstractSyntaxTree = (filePath: string, prettierCo
   const interfaceExists = t.isTSModuleDeclaration(lastNode) && lastNode.global && lastNode.declare;
   const newNodes = interfaceExists ? currentNodes.slice(0, currentNodes.length - 1) : currentNodes;
   const { code: existingCode } = generate(t.program(newNodes), { retainLines: true });
-  const formattedExistingCode = format(existingCode, { parser: 'babel', ...prettierConfig });
+  const formattedExistingCode = format(existingCode, { parser: 'babel-ts', ...prettierConfig });
   const { code: newCode } = generate(t.program(newInterface));
   return `${formattedExistingCode}\n${newCode}\n`;
 };

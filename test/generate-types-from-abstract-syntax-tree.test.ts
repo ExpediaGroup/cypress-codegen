@@ -25,7 +25,7 @@ const prettierConfig = {
 };
 
 describe('generateTypesFromAbstractSyntaxTree', () => {
-  it('should generate types when types do not exist', async () => {
+  it('should generate types when types do not exist', () => {
     (readFileSync as jest.Mock).mockReturnValue(`// some comment
 
 export function functionExampleOneInput(input1: string) {
@@ -85,7 +85,7 @@ declare global {
 `);
   });
 
-  it('should generate types when types exist', async () => {
+  it('should generate types when types exist', () => {
     (readFileSync as jest.Mock).mockReturnValue(`// some comment
 
 export function functionExampleOneInput(input1: string) {
@@ -154,7 +154,7 @@ declare global {
 `);
   });
 
-  it('should preserve formatting', async () => {
+  it('should preserve formatting', () => {
     (readFileSync as jest.Mock).mockReturnValue(`// some comment
 
 export function functionExampleOneInput(input1: string) {
@@ -227,7 +227,7 @@ declare global {
 `);
   });
 
-  it('should generate a special type for scoped commands', async () => {
+  it('should generate a special type for scoped commands', () => {
     (readFileSync as jest.Mock).mockReturnValue(`// some comment
 
 export function functionExampleScoped(
@@ -257,7 +257,31 @@ declare global {
 `);
   });
 
-  it('should throw descriptive error for object-destructured input', async () => {
+  it('should handle generic types properly', () => {
+    (readFileSync as jest.Mock).mockReturnValue(`// some comment
+
+export function functionExampleGenericType(input1: string) {
+  cy.log<GenericType>('Here is a generic type!');
+}
+`);
+    const result = generateTypesFromAbstractSyntaxTree(filePath, prettierConfig);
+    expect(result).toEqual(`// some comment
+
+export function functionExampleGenericType(input1: string) {
+  cy.log<GenericType>('Here is a generic type!');
+}
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      functionExampleGenericType(input1: string): Chainable;
+    }
+  }
+}
+`);
+  });
+
+  it('should throw descriptive error for object-destructured input', () => {
     (readFileSync as jest.Mock).mockReturnValue(`
 
 export const objectDestructureExample = ({ input1, input2 }: { input1: string; input2: string }) => {
