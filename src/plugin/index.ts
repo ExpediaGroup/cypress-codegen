@@ -11,7 +11,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { sync } from 'glob';
+import { globSync } from 'glob';
 import { sep } from 'path';
 import { Options as PrettierConfig } from 'prettier';
 import { COMMANDS_DIRECTORY } from '../common';
@@ -39,7 +39,7 @@ export const cypressCodegen: CypressCodegen = (
   on('task', {
     importCustomCommands: () => {
       return {
-        filePaths: sync(`${COMMANDS_DIRECTORY}/**/*`, { nodir: true }),
+        filePaths: globSync(`${COMMANDS_DIRECTORY}/**/*`, { nodir: true }),
         commandsDirectory: `cypress${sep}commands${sep}`
       };
     }
