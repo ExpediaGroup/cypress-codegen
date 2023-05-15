@@ -21,7 +21,7 @@
     "@babel/core": "7.21.8",
     "chalk": "4.1.2",
     "commander": "10.0.1",
-    "glob": "10.2.2",
+    "glob": "10.2.3",
     "prettier": "2.8.0"
   },
   "peerDependencies": {
