@@ -22,7 +22,7 @@
     "chalk": "4.1.2",
     "commander": "11.0.0",
     "glob": "10.3.3",
-    "prettier": "2.8.0"
+    "prettier": "3.0.0"
   },
   "peerDependencies": {
     "cypress": ">=10"
