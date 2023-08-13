@@ -11,7 +11,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'cypress-codegen';
 import { mount } from 'cypress/react18';
 
 // Augment the Cypress namespace to include type definitions for
@@ -27,3 +26,4 @@ declare global {
 }
 
 Cypress.Commands.add('mount', mount);
+import('../commands').then(Cypress.Commands.addAll);

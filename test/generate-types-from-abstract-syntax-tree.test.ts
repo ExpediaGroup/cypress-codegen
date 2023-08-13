@@ -227,36 +227,6 @@ declare global {
 `);
   });
 
-  it('should generate a special type for scoped commands', async () => {
-    (readFileSync as jest.Mock).mockReturnValue(`// some comment
-
-export function functionExampleScoped(
-  element: Cypress.JQueryWithSelector,
-  input1: string
-) {
-  cy.log('Here is a scoped custom command!');
-}
-`);
-    const result = await generateTypesFromAbstractSyntaxTree(filePath, prettierConfig);
-    expect(result).toEqual(`// some comment
-
-export function functionExampleScoped(
-  element: Cypress.JQueryWithSelector,
-  input1: string,
-) {
-  cy.log('Here is a scoped custom command!');
-}
-
-declare global {
-  namespace Cypress {
-    interface Chainable {
-      functionExampleScoped(input1: string): Chainable;
-    }
-  }
-}
-`);
-  });
-
   it('should handle generic types properly', async () => {
     (readFileSync as jest.Mock).mockReturnValue(`// some comment
 
@@ -292,5 +262,19 @@ export const objectDestructureExample = ({ input1, input2 }: { input1: string; i
     await expect(
       generateTypesFromAbstractSyntaxTree(filePath, prettierConfig)
     ).rejects.toThrowError();
+  });
+
+  it('should handle file with only exports', async () => {
+    (readFileSync as jest.Mock).mockReturnValue(`// some comment
+
+export * from './some-file';
+export * from './some-other-file';
+`);
+    const result = await generateTypesFromAbstractSyntaxTree(filePath, prettierConfig);
+    expect(result).toEqual(`// some comment
+
+export * from './some-file';
+export * from './some-other-file';
+`);
   });
 });

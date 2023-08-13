@@ -11,37 +11,29 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { globSync } from 'glob';
-import { sep } from 'path';
-import { Options as PrettierConfig } from 'prettier';
-import { COMMANDS_DIRECTORY } from '../common';
 import { codegen } from './codegen';
+import { join, relative } from 'path';
 
 export type CypressCodegen = (
   on: Cypress.PluginEvents,
-  config: Cypress.PluginConfigOptions,
-  prettierConfigOverride?: PrettierConfig
+  config: Cypress.PluginConfigOptions
 ) => void;
 
 export const cypressCodegen: CypressCodegen = (
   on: Cypress.PluginEvents,
-  config: Cypress.PluginConfigOptions,
-  prettierConfigOverride?: PrettierConfig
+  config: Cypress.PluginConfigOptions
 ) => {
-  if (config.env.CODEGEN !== 'false') {
+  if (!config.env.skipCodegen) {
     on('before:browser:launch', async (browser, launchOptions) => {
-      await codegen(prettierConfigOverride);
+      await codegen(config.env.commandsDirectory);
 
       return launchOptions;
     });
   }
 
   on('task', {
-    importCustomCommands: () => {
-      return {
-        filePaths: globSync(`${COMMANDS_DIRECTORY}/**/*`, { nodir: true }),
-        commandsDirectory: `cypress${sep}commands${sep}`
-      };
+    getRelativePathToCommands: () => {
+      return relative(join(__dirname, '..'), config.projectRoot);
     }
   });
 

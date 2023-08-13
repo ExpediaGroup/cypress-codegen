@@ -26,7 +26,6 @@ import generate from '@babel/generator';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import { format, Options } from 'prettier';
-import { isScopedMethod } from '../common';
 
 export const generateTypesFromAbstractSyntaxTree = async (
   filePath: string,
@@ -59,17 +58,19 @@ export const generateTypesFromAbstractSyntaxTree = async (
         }
         return parameter as Identifier;
       });
-      const firstParamOmitted = parameters.slice(1);
       return {
         functionIdentifier,
-        parameters: isScopedMethod(functionIdentifier?.name) ? firstParamOmitted : parameters
+        parameters
       };
     });
-  const newInterface = generateInterface(customCommands as CustomCommand[]);
   const lastNode = currentNodes[currentNodes.length - 1];
   const interfaceExists = t.isTSModuleDeclaration(lastNode) && lastNode.global && lastNode.declare;
   const newNodes = interfaceExists ? currentNodes.slice(0, currentNodes.length - 1) : currentNodes;
   const { code: existingCode } = generate(t.program(newNodes), { retainLines: true });
+  if (!customCommands.length) {
+    return `${existingCode}\n`;
+  }
+  const newInterface = generateInterface(customCommands as CustomCommand[]);
   const formattedExistingCode = await format(existingCode, {
     parser: 'babel-ts',
     ...prettierConfig
