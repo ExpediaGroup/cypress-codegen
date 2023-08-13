@@ -11,17 +11,22 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-export const arrowFunctionExample = (input: string) => {
+export function functionExample(input: string) {
   cy.log('Here is a custom command!')
-    .log('It must be an exported const, not a function.')
     .log('And it preserves my code styling')
     .log('When I chain commands on new lines!');
+  cy.contains(input);
+}
+
+export const arrowFunctionExample = (input: string) => {
+  cy.log('Here is a custom command from an arrow function!');
   cy.contains(input);
 };
 
 declare global {
   namespace Cypress {
     interface Chainable {
+      functionExample(input: string): Chainable;
       arrowFunctionExample(input: string): Chainable;
     }
   }

@@ -16,14 +16,7 @@ export default defineConfig({
     devServer: {
       framework: 'react',
       bundler: 'vite',
-      viteConfig: {
-        build: {
-          sourcemap: 'inline'
-        },
-        esbuild: {
-          jsx: 'transform'
-        }
-      }
+      viteConfig: {}
     },
     setupNodeEvents(on, config) {
       cypressCodegen(on, config);

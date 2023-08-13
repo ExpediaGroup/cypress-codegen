@@ -20,6 +20,10 @@ describe('Example Test', () => {
     cy.mount(<p>{componentText}</p>);
   });
 
+  it('should import custom commands in component tests', () => {
+    cy.functionExample(componentText);
+  });
+
   it('should dynamically import custom commands from arrow functions', () => {
     cy.arrowFunctionExample(componentText);
   });
@@ -29,7 +33,10 @@ describe('Example Test', () => {
   });
 
   it('should chain custom commands', () => {
-    cy.log(componentText).arrowFunctionExample(componentText).nestedExample(componentText);
+    cy.log(componentText)
+      .functionExample(componentText)
+      .arrowFunctionExample(componentText)
+      .nestedExample(componentText);
   });
 
   it('should support custom mount commands', () => {

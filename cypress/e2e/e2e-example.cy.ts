@@ -18,6 +18,10 @@ describe('Example Test', () => {
     cy.visit('https://example.cypress.io/');
   });
 
+  it('should dynamically import custom commands from functions', () => {
+    cy.functionExample(expectedText);
+  });
+
   it('should dynamically import custom commands from arrow functions', () => {
     cy.arrowFunctionExample(expectedText);
   });
@@ -27,6 +31,9 @@ describe('Example Test', () => {
   });
 
   it('should chain custom commands', () => {
-    cy.log(expectedText).arrowFunctionExample(expectedText).nestedExample(expectedText);
+    cy.log(expectedText)
+      .functionExample(expectedText)
+      .arrowFunctionExample(expectedText)
+      .nestedExample(expectedText);
   });
 });
