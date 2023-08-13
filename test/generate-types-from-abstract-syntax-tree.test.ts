@@ -11,7 +11,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { generateTypesFromAbstractSyntaxTree } from '../src/plugin/generate-types-from-abstract-syntax-tree';
+import { generateTypesFromAbstractSyntaxTree } from '../src/generate-types-from-abstract-syntax-tree';
 
 import { expect } from '@jest/globals';
 import { readFileSync } from 'fs';

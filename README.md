@@ -18,7 +18,7 @@ A [Cypress](https://www.cypress.io/) plugin and CLI tool which automatically add
 
 The process for adding Cypress custom commands to test suites is quite manual and involves bloating projects with too much boilerplate code.
 Additionally, custom commands are hard to write because we don't get IntelliSense or the ease of navigating to the command's definition.
-The `cypress-codegen` plugin will dynamically import all of your project's custom commands and will even enable IntelliSense and "go to definition" shortcuts!
+The `cypress-codegen` plugin will enable IntelliSense and "go to definition" shortcuts, and will also generate boilerplate for adding custom commands to Cypress!
 
 ## Installation
 
@@ -33,7 +33,7 @@ Model your Cypress project exactly like [the one in this repository](https://git
 1. Add the required plugin code to `cypress.config.ts` like so:
 
 ```ts
-import { cypressCodegen } from 'cypress-codegen/plugin';
+import { cypressCodegen } from 'cypress-codegen';
 import { defineConfig } from 'cypress';
 
 export default defineConfig({
@@ -50,24 +50,16 @@ export default defineConfig({
       return config;
     },
     devServer: {
-      framework: 'create-react-app',
-      bundler: 'webpack'
+      framework: 'react',
+      bundler: 'vite'
     }
   }
 });
 ```
 
-2. Add to `cypress/support/component.ts` and/or `cypress/support/e2e.ts`:
+2. Put all of your custom commands in `cypress/commands` as regular functions.
 
-```ts
-import 'cypress-codegen';
-```
-
-3. Put all of your custom commands in `cypress/commands` as regular functions. It is recommended to separate each command into its own file of the same name.
-
-4. Run any Cypress test, and `cypress-codegen` will:
-   - load these functions as valid custom commands
-   - generate a special Cypress type definition for each function which will enable IntelliSense and "go to definition" shortcuts in your Cypress test code
+3. Run the `cypress-codegen` command, or run any Cypress test!
 
 ## Example
 
@@ -82,50 +74,8 @@ for more details.
 
 ## Code Styling
 
-`cypress-codegen` will attempt to read your `prettierrc` config by default.
-However, you may pass a config override in the cypress.config.ts invocation:
-
-```ts
-setupNodeEvents(on, config) {
-    cypressCodegen(on, config, prettierConfigOverride);
-    return config;
-}
-```
+`cypress-codegen` will attempt to read your `prettierrc` config by default, but will use the prettier defaults otherwise.
 
 ## Command Line Usage
 
-You can also run `cypress-codegen` in your terminal to generate types for your Cypress project!
-
-Optionally pass the `--prettier-config` flag to pass in a stringified prettier config object.
-
-## Configuration
-
-### Project Flag
-
-If you are using the `--project` flag when starting Cypress, you will need to set the Cypress environment variable `PROJECT` to your project name.
-
-In cypress.config.ts:
-
-```ts
-env: {
-  PROJECT: 'my-project';
-}
-```
-
-### Javascript
-
-The IntelliSense codegen feature is enabled by default.
-To disable the codegen feature (perhaps for a Javascript Cypress project), set the `CODEGEN` Cypress environment variable to `false`.
-You will still get the benefit of the custom commands being loaded automatically without even having to invoke `Cypress.Commands.add()`!
-
-```shell
-CYPRESS_CODEGEN=false npx cypress run
-```
-
-or in `cypress.config.js`:
-
-```ts
-env: {
-  CODEGEN: false;
-}
-```
+You can run `cypress-codegen` in your terminal to generate types for your Cypress project!

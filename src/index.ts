@@ -10,7 +10,23 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-//
-// export const importCustomCommands = (relativePath: string) => {
-//   import(relativePath).then(Cypress.Commands.addAll);
-// }
+
+import { codegen } from './codegen';
+
+export type CypressCodegen = (
+  on: Cypress.PluginEvents,
+  config: Cypress.PluginConfigOptions
+) => void;
+
+export const cypressCodegen: CypressCodegen = (
+  on: Cypress.PluginEvents,
+  config: Cypress.PluginConfigOptions
+) => {
+  on('before:browser:launch', async (browser, launchOptions) => {
+    await codegen(config.env.commandsDirectory);
+
+    return launchOptions;
+  });
+
+  return config;
+};
