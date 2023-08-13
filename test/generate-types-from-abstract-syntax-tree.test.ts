@@ -25,7 +25,7 @@ const prettierConfig = {
 };
 
 describe('generateTypesFromAbstractSyntaxTree', () => {
-  it('should generate types when types do not exist', () => {
+  it('should generate types when types do not exist', async () => {
     (readFileSync as jest.Mock).mockReturnValue(`// some comment
 
 export function functionExampleOneInput(input1: string) {
@@ -48,7 +48,7 @@ export const arrowFunctionExample = (input1: string) => {
   cy.log('Here is a custom command from an arrow function!').log(input);
 };
 `);
-    const result = generateTypesFromAbstractSyntaxTree(filePath, prettierConfig);
+    const result = await await generateTypesFromAbstractSyntaxTree(filePath, prettierConfig);
     expect(result).toEqual(`// some comment
 
 export function functionExampleOneInput(input1: string) {
@@ -85,7 +85,7 @@ declare global {
 `);
   });
 
-  it('should generate types when types exist', () => {
+  it('should generate types when types exist', async () => {
     (readFileSync as jest.Mock).mockReturnValue(`// some comment
 
 export function functionExampleOneInput(input1: string) {
@@ -117,7 +117,7 @@ declare global {
   }
 }
 `);
-    const result = generateTypesFromAbstractSyntaxTree(filePath, prettierConfig);
+    const result = await generateTypesFromAbstractSyntaxTree(filePath, prettierConfig);
     expect(result).toEqual(`// some comment
 
 export function functionExampleOneInput(input1: string) {
@@ -154,7 +154,7 @@ declare global {
 `);
   });
 
-  it('should preserve formatting', () => {
+  it('should preserve formatting', async () => {
     (readFileSync as jest.Mock).mockReturnValue(`// some comment
 
 export function functionExampleOneInput(input1: string) {
@@ -188,7 +188,7 @@ declare global {
   }
 }
 `);
-    const result = generateTypesFromAbstractSyntaxTree(filePath, prettierConfig);
+    const result = await generateTypesFromAbstractSyntaxTree(filePath, prettierConfig);
     expect(result).toEqual(`// some comment
 
 export function functionExampleOneInput(input1: string) {
@@ -227,7 +227,7 @@ declare global {
 `);
   });
 
-  it('should generate a special type for scoped commands', () => {
+  it('should generate a special type for scoped commands', async () => {
     (readFileSync as jest.Mock).mockReturnValue(`// some comment
 
 export function functionExampleScoped(
@@ -237,12 +237,12 @@ export function functionExampleScoped(
   cy.log('Here is a scoped custom command!');
 }
 `);
-    const result = generateTypesFromAbstractSyntaxTree(filePath, prettierConfig);
+    const result = await generateTypesFromAbstractSyntaxTree(filePath, prettierConfig);
     expect(result).toEqual(`// some comment
 
 export function functionExampleScoped(
   element: Cypress.JQueryWithSelector,
-  input1: string
+  input1: string,
 ) {
   cy.log('Here is a scoped custom command!');
 }
@@ -257,14 +257,14 @@ declare global {
 `);
   });
 
-  it('should handle generic types properly', () => {
+  it('should handle generic types properly', async () => {
     (readFileSync as jest.Mock).mockReturnValue(`// some comment
 
 export function functionExampleGenericType(input1: string) {
   cy.log<GenericType>('Here is a generic type!');
 }
 `);
-    const result = generateTypesFromAbstractSyntaxTree(filePath, prettierConfig);
+    const result = await generateTypesFromAbstractSyntaxTree(filePath, prettierConfig);
     expect(result).toEqual(`// some comment
 
 export function functionExampleGenericType(input1: string) {
@@ -281,7 +281,7 @@ declare global {
 `);
   });
 
-  it('should throw descriptive error for object-destructured input', () => {
+  it('should throw descriptive error for object-destructured input', async () => {
     (readFileSync as jest.Mock).mockReturnValue(`
 
 export const objectDestructureExample = ({ input1, input2 }: { input1: string; input2: string }) => {
@@ -289,6 +289,8 @@ export const objectDestructureExample = ({ input1, input2 }: { input1: string; i
   cy.log(input2);
 };
 `);
-    expect(() => generateTypesFromAbstractSyntaxTree(filePath, prettierConfig)).toThrowError();
+    await expect(
+      generateTypesFromAbstractSyntaxTree(filePath, prettierConfig)
+    ).rejects.toThrowError();
   });
 });

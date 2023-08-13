@@ -5,12 +5,17 @@ import { generateTypesFromAbstractSyntaxTree } from './generate-types-from-abstr
 import { writeFileSync } from 'fs';
 import { resolve } from 'path';
 
-export const codegen = (prettierConfigOverride?: PrettierConfig) => {
+export const codegen = async (prettierConfigOverride?: PrettierConfig) => {
   const filePaths = globSync(`${COMMANDS_DIRECTORY}/**/*`, { nodir: true });
-  const prettierConfig = prettierConfigOverride ?? resolveConfig.sync(process.cwd()) ?? {};
+  const prettierConfig = prettierConfigOverride ?? (await resolveConfig(process.cwd())) ?? {};
 
-  filePaths.forEach(filePath => {
-    const fileContentsWithTypes = generateTypesFromAbstractSyntaxTree(filePath, prettierConfig);
-    writeFileSync(resolve(filePath), fileContentsWithTypes);
-  });
+  return Promise.all(
+    filePaths.map(async filePath => {
+      const fileContentsWithTypes = await generateTypesFromAbstractSyntaxTree(
+        filePath,
+        prettierConfig
+      );
+      writeFileSync(resolve(filePath), fileContentsWithTypes);
+    })
+  );
 };

@@ -25,7 +25,7 @@
     "prettier": "3.0.1"
   },
   "peerDependencies": {
-    "cypress": ">=10"
+    "cypress": ">=12"
   },
   "devDependencies": {
     "@types/glob": "8.1.0",
@@ -63,7 +63,7 @@
     "lint": "eslint --quiet --fix src/**/*",
     "precypress:open": "npm run build",
     "prepare": "husky install",
-    "test": "jest"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "jest": {
     "transform": {

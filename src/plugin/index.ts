@@ -28,9 +28,9 @@ export const cypressCodegen: CypressCodegen = (
   config: Cypress.PluginConfigOptions,
   prettierConfigOverride?: PrettierConfig
 ) => {
-  if (config.env.CODEGEN !== false) {
-    on('before:browser:launch', (browser, launchOptions) => {
-      codegen(prettierConfigOverride);
+  if (config.env.CODEGEN !== 'false') {
+    on('before:browser:launch', async (browser, launchOptions) => {
+      await codegen(prettierConfigOverride);
 
       return launchOptions;
     });

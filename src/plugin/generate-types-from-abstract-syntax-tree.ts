@@ -28,7 +28,10 @@ import { resolve } from 'path';
 import { format, Options } from 'prettier';
 import { isScopedMethod } from '../common';
 
-export const generateTypesFromAbstractSyntaxTree = (filePath: string, prettierConfig: Options) => {
+export const generateTypesFromAbstractSyntaxTree = async (
+  filePath: string,
+  prettierConfig: Options
+) => {
   const contents = readFileSync(resolve(filePath)).toString();
   const ast = parse(contents, { sourceType: 'module', plugins: ['typescript', 'jsx'] });
   const currentNodes = ast.program.body;
@@ -67,7 +70,10 @@ export const generateTypesFromAbstractSyntaxTree = (filePath: string, prettierCo
   const interfaceExists = t.isTSModuleDeclaration(lastNode) && lastNode.global && lastNode.declare;
   const newNodes = interfaceExists ? currentNodes.slice(0, currentNodes.length - 1) : currentNodes;
   const { code: existingCode } = generate(t.program(newNodes), { retainLines: true });
-  const formattedExistingCode = format(existingCode, { parser: 'babel-ts', ...prettierConfig });
+  const formattedExistingCode = await format(existingCode, {
+    parser: 'babel-ts',
+    ...prettierConfig
+  });
   const { code: newCode } = generate(t.program(newInterface));
   return `${formattedExistingCode}\n${newCode}\n`;
 };
