@@ -9,6 +9,6 @@ console.log(chalk.yellowBright('Generating custom command types...'));
 
 program.parse(process.argv);
 
-codegen();
-
-console.log(chalk.bgGreen('Codegen complete!'));
+codegen().then(() => {
+  console.log(chalk.bgGreen('Codegen complete!'));
+});

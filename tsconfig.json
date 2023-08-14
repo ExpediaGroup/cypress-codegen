@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "outDir": "dist",
-    "rootDir": "src",
     "declaration": true,
     "module": "CommonJS",
     "sourceMap": true,
