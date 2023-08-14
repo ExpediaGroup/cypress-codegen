@@ -4,11 +4,12 @@
 import * as chalk from 'chalk';
 import { program } from 'commander';
 import { codegen } from './codegen';
+import config from '../cypress.config';
 
 console.log(chalk.yellowBright('Generating custom command types...'));
 
 program.parse(process.argv);
 
-codegen().then(() => {
+codegen(config).then(() => {
   console.log(chalk.bgGreen('Codegen complete!'));
 });

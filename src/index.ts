@@ -23,7 +23,7 @@ export const cypressCodegen: CypressCodegen = (
   config: Cypress.PluginConfigOptions
 ) => {
   on('before:browser:launch', async (browser, launchOptions) => {
-    await codegen(config.env.commandsDirectory);
+    await codegen(config);
 
     return launchOptions;
   });
