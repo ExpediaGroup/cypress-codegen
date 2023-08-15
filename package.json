@@ -23,7 +23,6 @@
   },
   "scripts": {
     "build": "pnpm --filter cypress-codegen build",
-    "cli": "pnpm build && ls node_modules/.bin && npx cypress-codegen",
     "cypress:open": "npm run build && cypress open",
     "cypress:component": "cypress run --component",
     "cypress:e2e": "cypress run",
@@ -31,6 +30,7 @@
     "format-check": "prettier .",
     "lint": "pnpm --filter cypress-codegen lint",
     "prepare": "husky install",
+    "setup-cli": "pnpm i && pnpm build && pnpm i",
     "test": "pnpm --filter cypress-codegen test"
   }
 }

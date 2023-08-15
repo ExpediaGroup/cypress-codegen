@@ -46,15 +46,11 @@ jobs:
           node-version-file: .nvmrc
           cache: pnpm
 
-      - name: Install
-        run: pnpm install
-
-      - run: pnpm build
-
-      - run: pnpm install
+      - name: Install and setup bin
+        run: pnpm setup-cli
 
       - name: Run cypress-codegen
-        run: pnpm cli
+        run: pnpm cypress-codegen
 
       - name: Check generated types match git
         run: |
