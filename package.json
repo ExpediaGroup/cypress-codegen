@@ -23,7 +23,7 @@
   },
   "scripts": {
     "build": "pnpm --filter cypress-codegen build",
-    "cli": "pnpm build && ls node_modules/cypress-codegen/dist && npx cypress-codegen",
+    "cli": "pnpm build && ls node_modules/.bin && npx cypress-codegen",
     "cypress:open": "npm run build && cypress open",
     "cypress:component": "cypress run --component",
     "cypress:e2e": "cypress run",
