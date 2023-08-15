@@ -13,19 +13,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup Node
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Setup node and pnpm cache
         uses: actions/setup-node@v3
         with:
           node-version-file: .nvmrc
+          cache: pnpm
 
       - name: Install
-        run: npm ci
+        run: pnpm install
 
       - name: Lint
-        run: npm run lint
+        run: pnpm lint
 
       - name: Unit Tests
-        run: npm run test
+        run: pnpm test
   cli:
     name: CLI
     runs-on: ubuntu-latest
@@ -33,16 +37,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup Node
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Setup node and pnpm cache
         uses: actions/setup-node@v3
         with:
           node-version-file: .nvmrc
+          cache: pnpm
 
       - name: Install
-        run: npm ci
+        run: pnpm install
 
       - name: Run cypress-codegen
-        run: npm run cli
+        run: pnpm cli
 
       - name: Check generated types match git
         run: |
@@ -66,15 +74,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup Node
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Setup node and pnpm cache
         uses: actions/setup-node@v3
         with:
           node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install
 
       - name: Integration Tests
         uses: cypress-io/github-action@v5
         with:
-          install: true
-          build: npm run build
+          install: false
+          build: pnpm build
           browser: chrome
           component: ${{ matrix.component }}

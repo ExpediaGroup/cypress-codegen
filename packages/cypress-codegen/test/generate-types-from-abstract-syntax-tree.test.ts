@@ -13,7 +13,6 @@ limitations under the License.
 
 import { generateTypesFromAbstractSyntaxTree } from '../src/generate-types-from-abstract-syntax-tree';
 
-import { expect } from '@jest/globals';
 import { readFileSync } from 'fs';
 
 jest.mock('fs');
@@ -247,7 +246,7 @@ declare global {
 `);
   });
 
-  it('should throw descriptive error for object-destructured input', async () => {
+  it('should throw error for object-destructured input', async () => {
     (readFileSync as jest.Mock).mockReturnValue(`
 export const objectDestructureExample = ({ input1, input2 }: { input1: string; input2: string }) => {
   cy.log(input1);
