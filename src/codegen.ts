@@ -4,16 +4,19 @@ import { generateTypesFromAbstractSyntaxTree } from './generate-types-from-abstr
 import { writeFileSync } from 'fs';
 import { resolve } from 'path';
 import { appendCommandImports } from './append-command-imports';
+import { generateExports } from './generate-exports';
 
 export const codegen = async (config?: Cypress.ConfigOptions) => {
   const indexTsFile = 'cypress/commands/index.ts';
   const filePaths = globSync('cypress/commands/**/*', { nodir: true, ignore: indexTsFile });
   const prettierConfig = (await resolveConfig(process.cwd())) ?? {};
 
-  const componentFilePath = resolve(
-    config?.component?.supportFile || 'cypress/support/component.ts'
-  );
-  const e2eFilePath = resolve(config?.e2e?.supportFile || 'cypress/support/e2e.ts');
+  const componentFilePath = config?.component?.supportFile || 'cypress/support/component.ts';
+  const e2eFilePath = config?.e2e?.supportFile || 'cypress/support/e2e.ts';
+  const commandsIndexPath = 'cypress/commands/index.ts';
+
+  const exportFileContents = await generateExports(filePaths, prettierConfig);
+  writeFileSync(resolve(commandsIndexPath), exportFileContents);
 
   return Promise.all([
     ...filePaths.map(async filePath => {
@@ -25,7 +28,7 @@ export const codegen = async (config?: Cypress.ConfigOptions) => {
     }),
     ...[componentFilePath, e2eFilePath].map(async path => {
       const fileContentsWithImports = await appendCommandImports(path, prettierConfig);
-      writeFileSync(path, fileContentsWithImports);
+      writeFileSync(resolve(path), fileContentsWithImports);
     })
   ]);
 };
