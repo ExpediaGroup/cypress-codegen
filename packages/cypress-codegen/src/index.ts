@@ -11,27 +11,5 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { codegen } from './codegen';
-
-export type CypressCodegen = (
-  on: Cypress.PluginEvents,
-  config: Cypress.PluginConfigOptions
-) => void;
-
-export const cypressCodegen: CypressCodegen = (
-  on: Cypress.PluginEvents,
-  config: Cypress.PluginConfigOptions
-) => {
-  on('before:browser:launch', async (browser, launchOptions) => {
-    await codegen({
-      component: Boolean(config.component),
-      e2e: Boolean(config.e2e),
-      componentSupportFile: config.component?.supportFile || undefined,
-      e2eSupportFile: config.e2e?.supportFile || undefined
-    });
-
-    return launchOptions;
-  });
-
-  return config;
-};
+export type { CypressCodegen } from './codegen';
+export { cypressCodegen } from './codegen';

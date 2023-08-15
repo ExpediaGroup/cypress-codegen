@@ -6,6 +6,29 @@ import { resolve } from 'path';
 import { appendCommandImports } from './append-command-imports';
 import { generateExports } from './generate-exports';
 
+export type CypressCodegen = (
+  on: Cypress.PluginEvents,
+  config: Cypress.PluginConfigOptions
+) => void;
+
+export const cypressCodegen: CypressCodegen = (
+  on: Cypress.PluginEvents,
+  config: Cypress.PluginConfigOptions
+) => {
+  on('before:browser:launch', async (browser, launchOptions) => {
+    await codegen({
+      component: Boolean(config.component),
+      e2e: Boolean(config.e2e),
+      componentSupportFile: config.component?.supportFile || undefined,
+      e2eSupportFile: config.e2e?.supportFile || undefined
+    });
+
+    return launchOptions;
+  });
+
+  return config;
+};
+
 type Codegen = {
   component?: boolean;
   e2e?: boolean;
