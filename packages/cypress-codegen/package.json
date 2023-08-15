@@ -45,6 +45,7 @@
     "build": "npm run clean && tsc",
     "clean": "rm -rf dist",
     "lint": "eslint --quiet --fix src/**/*",
+    "prepack": "pnpm run build",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "jest": {

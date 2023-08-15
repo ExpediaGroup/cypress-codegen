@@ -15,16 +15,20 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Node
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Setup node and pnpm cache
         uses: actions/setup-node@v3
         with:
           node-version-file: .nvmrc
+          cache: pnpm
 
       - name: Install
-        run: npm ci
+        run: pnpm install
 
-      - name: Build
-        run: npm run build
+      - name: Publish
+        run: pnpm publish
 
       - name: Create Release
         run: npx semantic-release --no-ci
