@@ -50,7 +50,7 @@
     "vite": "4.4.9"
   },
   "scripts": {
-    "build": "npm run clean && tsc --skipLibCheck && mkdir -p node_modules/cypress-codegen/dist && cp -r dist package.json node_modules/cypress-codegen",
+    "build": "npm run clean && tsc && mkdir -p node_modules/cypress-codegen/dist && cp -r dist package.json node_modules/cypress-codegen",
     "clean": "rm -rf dist node_modules/cypress-codegen",
     "cli": "npm run build && node dist/cli.js",
     "cypress:open": "npm run build && cypress open",

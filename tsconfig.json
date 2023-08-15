@@ -7,8 +7,8 @@
     "strict": true,
     "target": "ES6",
     "lib": ["ES2019", "DOM"],
-    "jsx": "react"
+    "jsx": "react",
+    "types": ["cypress"]
   },
-  "include": ["src", "node_modules/cypress"],
-  "exclude": ["cypress.config.ts"]
+  "include": ["src"]
 }
