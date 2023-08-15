@@ -2,6 +2,7 @@
   "name": "cypress-codegen",
   "packageManager": "pnpm@8.6.12",
   "devDependencies": {
+    "@total-typescript/ts-reset": "0.4.2",
     "@types/react": "18.0.24",
     "@typescript-eslint/eslint-plugin": "6.3.0",
     "cypress": "12.17.3",

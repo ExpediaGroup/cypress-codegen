@@ -23,7 +23,12 @@ export const cypressCodegen: CypressCodegen = (
   config: Cypress.PluginConfigOptions
 ) => {
   on('before:browser:launch', async (browser, launchOptions) => {
-    await codegen(config);
+    await codegen({
+      component: Boolean(config.component),
+      e2e: Boolean(config.e2e),
+      componentSupportFile: config.component?.supportFile || undefined,
+      e2eSupportFile: config.e2e?.supportFile || undefined
+    });
 
     return launchOptions;
   });

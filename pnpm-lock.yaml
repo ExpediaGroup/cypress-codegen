@@ -8,6 +8,9 @@ importers:
 
   .:
     devDependencies:
+      '@total-typescript/ts-reset':
+        specifier: 0.4.2
+        version: 0.4.2
       '@types/react':
         specifier: 18.0.24
         version: 18.0.24
@@ -86,6 +89,9 @@ importers:
       chalk:
         specifier: 4.1.2
         version: 4.1.2
+      commander:
+        specifier: 11.0.0
+        version: 11.0.0
       cypress:
         specifier: '>=12'
         version: 12.17.3
@@ -1442,6 +1448,10 @@ packages:
       jsonc-parser: 3.2.0
     dev: true
 
+  /@total-typescript/ts-reset@0.4.2:
+    resolution: {integrity: sha512-vqd7ZUDSrXFVT1n8b2kc3LnklncDQFPvR58yUS1kEP23/nHPAO9l1lMjUfnPrXYYk4Hj54rrLKMW5ipwk7k09A==}
+    dev: true
+
   /@types/babel__core@7.20.1:
     resolution: {integrity: sha512-aACu/U/omhdk15O4Nfb+fHgH/z3QsfQzpnvRZhYhThms83ZnAOZz7zZAWO7mn2yyNQaA4xTO8GLK3uqFU4bYYw==}
     dependencies:
@@ -2407,6 +2417,11 @@ packages:
     engines: {node: '>= 0.8'}
     dependencies:
       delayed-stream: 1.0.0
+
+  /commander@11.0.0:
+    resolution: {integrity: sha512-9HMlXtt/BNoYr8ooyjjNRdIilOTkVJXB+GhxMTtOKwk0R4j4lS4NpjuqmRxroBfnfTSHQIHQB7wryHhXarNjmQ==}
+    engines: {node: '>=16'}
+    dev: false
 
   /commander@6.2.1:
     resolution: {integrity: sha512-U7VdrJFnJgo4xjrHpTzu0yrHPGImdsmD95ZlgYSEajAn2JKzDhDTPG9kBTefmObL2w/ngeZnilk+OV9CG3d7UA==}

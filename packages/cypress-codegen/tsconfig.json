@@ -10,5 +10,5 @@
     "jsx": "react",
     "types": ["cypress"]
   },
-  "include": ["src"]
+  "include": ["src", "*.d.ts"]
 }
