@@ -1,9 +1,9 @@
 {
   "name": "cypress-codegen",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "bin": {
-    "cypress-codegen": "dist/cli.js"
+    "cypress-codegen": "dist/src/cli.js"
   },
   "files": [
     "dist"

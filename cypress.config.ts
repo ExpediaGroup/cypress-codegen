@@ -1,3 +1,4 @@
+// @ts-ignore
 import { cypressCodegen } from 'cypress-codegen';
 import { defineConfig } from 'cypress';
 
