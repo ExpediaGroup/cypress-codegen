@@ -3,6 +3,8 @@
     "outDir": "dist",
     "declaration": true,
     "module": "CommonJS",
+    "noUncheckedIndexedAccess": true,
+    "resolveJsonModule": true,
     "sourceMap": true,
     "strict": true,
     "target": "ES6",
