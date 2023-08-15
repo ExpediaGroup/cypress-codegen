@@ -78,18 +78,3 @@ for more details.
 ## Command Line Usage
 
 You can run `cypress-codegen` in your terminal to generate types for your Cypress project!
-
-## Configuration
-
-By default, `cypress-codegen` expects your commands to live in the `cypress/commands` directory.
-However, you can override this using the `commandsDirectory` Cypress environment variable.
-
-In `cypress.config.ts`:
-
-```ts
-{
-  env: {
-    commandsDirectory: 'my/custom/directory';
-  }
-}
-```
