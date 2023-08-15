@@ -27,11 +27,8 @@ jobs:
       - name: Install
         run: pnpm install
 
-      - name: Publish
-        run: pnpm publish
-
       - name: Create Release
-        run: npx semantic-release --no-ci
+        run: pnpm semantic-release --no-ci
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
