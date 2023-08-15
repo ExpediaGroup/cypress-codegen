@@ -42,10 +42,10 @@
     "typescript": "5.1.6"
   },
   "scripts": {
-    "build": "npm run clean && tsc",
+    "build": "pnpm clean && tsc",
     "clean": "rm -rf dist",
     "lint": "eslint --quiet --fix src/**/*",
-    "prepack": "pnpm run build",
+    "prepack": "pnpm build",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "jest": {

@@ -24,7 +24,7 @@
   },
   "scripts": {
     "build": "pnpm --filter cypress-codegen build",
-    "cypress:open": "npm run build && cypress open",
+    "cypress:open": "cypress open",
     "cypress:component": "cypress run --component",
     "cypress:e2e": "cypress run",
     "format": "prettier --write .",
