@@ -83,10 +83,13 @@ jobs:
           node-version-file: .nvmrc
           cache: pnpm
 
+      - name: Install
+        run: pnpm install && pnpm cypress install
+
       - name: Integration Tests
         uses: cypress-io/github-action@v5
         with:
-          install: true
+          install: false
           build: pnpm build
           browser: chrome
           component: ${{ matrix.component }}
