@@ -5,17 +5,15 @@ import { writeFileSync } from 'fs';
 import { resolve } from 'path';
 import { appendCommandImports } from './append-command-imports';
 
-export const codegen = async (config: Cypress.ConfigOptions) => {
+export const codegen = async (config?: Cypress.ConfigOptions) => {
   const indexTsFile = 'cypress/commands/index.ts';
   const filePaths = globSync('cypress/commands/**/*', { nodir: true, ignore: indexTsFile });
   const prettierConfig = (await resolveConfig(process.cwd())) ?? {};
 
-  const { component, e2e } = config;
-  if (component?.supportFile === false || e2e?.supportFile === false) {
-    throw new Error('The supportFile config option cannot be disabled when using cypress-codegen.');
-  }
-  const componentFilePath = resolve(component?.supportFile ?? 'cypress/support/component.ts');
-  const e2eFilePath = resolve(e2e?.supportFile ?? 'cypress/support/e2e.ts');
+  const componentFilePath = resolve(
+    config?.component?.supportFile || 'cypress/support/component.ts'
+  );
+  const e2eFilePath = resolve(config?.e2e?.supportFile || 'cypress/support/e2e.ts');
 
   return Promise.all([
     ...filePaths.map(async filePath => {

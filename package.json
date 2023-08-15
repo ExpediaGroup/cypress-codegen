@@ -1,9 +1,9 @@
 {
   "name": "cypress-codegen",
-  "main": "dist/src/index.js",
-  "types": "dist/src/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "bin": {
-    "cypress-codegen": "dist/src/cli.js"
+    "cypress-codegen": "dist/cli.js"
   },
   "files": [
     "dist"
@@ -19,7 +19,6 @@
   "dependencies": {
     "@babel/core": "7.22.10",
     "chalk": "4.1.2",
-    "commander": "11.0.0",
     "glob": "10.3.3",
     "prettier": "3.0.1"
   },
@@ -33,6 +32,7 @@
     "@types/react": "18.0.24",
     "@typescript-eslint/eslint-plugin": "6.3.0",
     "cypress": "12.17.3",
+    "cypress-codegen": "file:.",
     "eslint": "8.26.0",
     "eslint-plugin-cypress": "2.14.0",
     "eslint-plugin-eslint-comments": "3.2.0",
@@ -46,21 +46,19 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "semantic-release": "20.1.0",
-    "ts-loader": "9.4.4",
-    "ts-node": "10.9.1",
     "typescript": "5.1.6",
     "vite": "4.4.9"
   },
   "scripts": {
-    "build": "tsc --skipLibCheck && mkdir -p node_modules/cypress-codegen/dist && cp -r dist package.json node_modules/cypress-codegen",
-    "cli": "ts-node src/cli.ts",
-    "cypress:open": "cypress open",
+    "build": "npm run clean && tsc --skipLibCheck && mkdir -p node_modules/cypress-codegen/dist && cp -r dist package.json node_modules/cypress-codegen",
+    "clean": "rm -rf dist node_modules/cypress-codegen",
+    "cli": "npm run build && node dist/cli.js",
+    "cypress:open": "npm run build && cypress open",
     "cypress:component": "cypress run --component",
     "cypress:e2e": "cypress run",
     "format": "prettier --write .",
     "format-check": "prettier .",
     "lint": "eslint --quiet --fix src/**/*",
-    "precypress:open": "npm run build",
     "prepare": "husky install",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
