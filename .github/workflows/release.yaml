@@ -28,7 +28,7 @@ jobs:
       - name: Install
         run: pnpm install
 
-      - run: pnpm publish --no-git-checks
+      - run: pnpm publish --recursive --no-git-checks
 
 #      - name: Create Release
 #        run: pnpm semantic-release --no-ci
