@@ -11,7 +11,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { generateTypesFromAbstractSyntaxTree } from '../src/generate-types-from-abstract-syntax-tree';
+import { generateContentsWithInterface } from '../src/generate-contents-with-interface';
 
 import { readFileSync } from 'fs';
 
@@ -23,7 +23,7 @@ const prettierConfig = {
   printWidth: 90
 };
 
-describe('generateTypesFromAbstractSyntaxTree', () => {
+describe('generateContentsWithInterface', () => {
   it('should generate types when types do not exist', async () => {
     (readFileSync as jest.Mock).mockReturnValue(`// some comment
 
@@ -47,7 +47,7 @@ export const arrowFunctionExample = (input1: string) => {
   cy.log('Here is a custom command from an arrow function!').log(input);
 };
 `);
-    const result = await generateTypesFromAbstractSyntaxTree(filePath, prettierConfig);
+    const result = await generateContentsWithInterface(filePath, prettierConfig);
     expect(result).toEqual(`// some comment
 
 export function functionExampleOneInput(input1: string) {
@@ -118,7 +118,7 @@ declare global {
   }
 }
 `);
-    const result = await generateTypesFromAbstractSyntaxTree(filePath, prettierConfig);
+    const result = await generateContentsWithInterface(filePath, prettierConfig);
     expect(result).toEqual(`// some comment
 
 export function functionExampleOneInput(input1: string) {
@@ -181,7 +181,7 @@ export const arrowFunctionExample = (input1: string) => {
   cy.log('Here is a custom command from an arrow function!').log(input);
 };
 `);
-    const result = await generateTypesFromAbstractSyntaxTree(filePath, prettierConfig);
+    const result = await generateContentsWithInterface(filePath, prettierConfig);
     expect(result).toEqual(`// some comment
 
 export function functionExampleOneInput(input1: string) {
@@ -228,7 +228,7 @@ export function functionExampleGenericType(input1: string) {
   cy.log<GenericType>('Here is a generic type!');
 }
 `);
-    const result = await generateTypesFromAbstractSyntaxTree(filePath, prettierConfig);
+    const result = await generateContentsWithInterface(filePath, prettierConfig);
     expect(result).toEqual(`// some comment
 
 export function functionExampleGenericType(input1: string) {
@@ -253,16 +253,14 @@ export const objectDestructureExample = ({ input1, input2 }: { input1: string; i
   cy.log(input2);
 };
 `);
-    await expect(
-      generateTypesFromAbstractSyntaxTree(filePath, prettierConfig)
-    ).rejects.toThrowError();
+    await expect(generateContentsWithInterface(filePath, prettierConfig)).rejects.toThrowError();
   });
 
   it('should handle file with only exports', async () => {
     (readFileSync as jest.Mock).mockReturnValue(`export * from './some-file';
 export * from './some-other-file';
 `);
-    const result = await generateTypesFromAbstractSyntaxTree(filePath, prettierConfig);
+    const result = await generateContentsWithInterface(filePath, prettierConfig);
     expect(result).toEqual(`export * from './some-file';
 export * from './some-other-file';
 `);

@@ -26,10 +26,7 @@ import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import { format, Options } from 'prettier';
 
-export const generateTypesFromAbstractSyntaxTree = async (
-  filePath: string,
-  prettierConfig: Options
-) => {
+export const generateContentsWithInterface = async (filePath: string, prettierConfig: Options) => {
   const contents = readFileSync(resolve(filePath)).toString();
   const ast = parse(contents, { sourceType: 'module', plugins: ['typescript', 'jsx'] });
   const currentNodes = ast.program.body;

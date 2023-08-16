@@ -16,7 +16,7 @@ import generate from '@babel/generator';
 import { format, Options } from 'prettier';
 import { join, parse, relative } from 'path';
 
-export const generateExports = async (filePaths: string[], prettierConfig: Options) => {
+export const generateContentWithExports = async (filePaths: string[], prettierConfig: Options) => {
   const exportStatements = filePaths.map(filePath => {
     const { dir, name } = parse(filePath);
     const pathWithoutExtension = join(dir, name);
