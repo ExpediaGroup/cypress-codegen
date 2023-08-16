@@ -28,10 +28,6 @@ describe('Example Test', () => {
     cy.arrowFunctionExample(componentText);
   });
 
-  it('should support scoped methods', () => {
-    cy.contains(componentText).functionExampleScoped(componentText);
-  });
-
   it('should dynamically import nested custom commands', () => {
     cy.nestedExample(componentText);
   });

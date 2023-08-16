@@ -1,4 +1,4 @@
-import { cypressCodegen } from 'cypress-codegen/plugin';
+import { cypressCodegen } from 'cypress-codegen';
 import { defineConfig } from 'cypress';
 
 export default defineConfig({
@@ -6,7 +6,7 @@ export default defineConfig({
   video: false,
 
   e2e: {
-    setupNodeEvents(on, config) {
+    setupNodeEvents(on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions) {
       cypressCodegen(on, config);
       return config;
     }
@@ -15,9 +15,10 @@ export default defineConfig({
   component: {
     devServer: {
       framework: 'react',
-      bundler: 'webpack'
+      bundler: 'vite',
+      viteConfig: {}
     },
-    setupNodeEvents(on, config) {
+    setupNodeEvents(on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions) {
       cypressCodegen(on, config);
       return config;
     }

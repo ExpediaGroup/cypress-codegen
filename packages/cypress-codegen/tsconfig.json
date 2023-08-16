@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
+    "outDir": "dist",
+    "declaration": true,
     "module": "CommonJS",
-    "noUncheckedIndexedAccess": true,
+    "sourceMap": true,
     "strict": true,
     "target": "ES6",
     "lib": ["ES2019", "DOM"],
     "jsx": "react",
     "types": ["cypress"]
-  }
+  },
+  "include": ["src", "*.d.ts"]
 }

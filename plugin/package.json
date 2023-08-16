@@ -1,5 +1,0 @@
-{
-  "name": "cypress-codegen/plugin",
-  "private": true,
-  "main": "../dist/plugin/index.js"
-}

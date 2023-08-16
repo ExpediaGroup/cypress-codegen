@@ -11,6 +11,4 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-export const COMMANDS_DIRECTORY = 'cypress/commands';
-
-export const isScopedMethod = (methodName?: string) => methodName?.endsWith('Scoped');
+export { cypressCodegen } from './codegen';

@@ -1,75 +1,38 @@
 {
   "name": "cypress-codegen",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "bin": {
-    "cypress-codegen": "dist/cli.js"
-  },
-  "files": [
-    "dist",
-    "plugin"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ExpediaGroup/cypress-codegen.git"
-  },
-  "bugs": {
-    "url": "https://github.com/ExpediaGroup/cypress-codegen/issues"
-  },
-  "license": "Apache-2.0",
-  "dependencies": {
-    "@babel/core": "7.22.10",
-    "chalk": "4.1.2",
-    "commander": "11.0.0",
-    "glob": "10.3.3",
-    "prettier": "2.8.0"
-  },
-  "peerDependencies": {
-    "cypress": ">=10"
-  },
+  "packageManager": "pnpm@8.6.12",
   "devDependencies": {
-    "@types/glob": "8.1.0",
-    "@types/jest": "28.1.7",
+    "@total-typescript/ts-reset": "0.4.2",
     "@types/react": "18.0.24",
+    "@typescript-eslint/eslint-plugin": "6.3.0",
     "cypress": "12.17.3",
+    "cypress-codegen": "workspace:*",
     "eslint": "8.26.0",
     "eslint-plugin-cypress": "2.14.0",
     "eslint-plugin-eslint-comments": "3.2.0",
     "eslint-plugin-filenames": "1.3.2",
-    "eslint-plugin-github": "4.4.0",
+    "eslint-plugin-github": "4.9.2",
     "eslint-plugin-import": "2.28.0",
-    "eslint-plugin-jest": "27.1.3",
-    "eslint-plugin-prettier": "4.2.1",
-    "eslint-plugin-typescript": "0.14.0",
+    "eslint-plugin-jest": "27.2.3",
+    "eslint-plugin-prettier": "5.0.0",
     "husky": "8.0.3",
-    "jest": "28.1.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "semantic-release": "20.1.0",
-    "ts-jest": "28.0.8",
-    "ts-loader": "9.4.4",
-    "ts-node": "10.9.1",
+    "semantic-release": "21.0.7",
+    "semantic-release-pnpm": "1.0.2",
     "typescript": "5.1.6",
-    "webpack": "5.82.0"
+    "vite": "4.4.9"
   },
   "scripts": {
-    "build": "tsc --skipLibCheck && mkdir -p node_modules/cypress-codegen/dist && cp -r dist plugin package.json node_modules/cypress-codegen",
-    "cli": "ts-node src/cli.ts",
+    "build": "pnpm --filter cypress-codegen build",
     "cypress:open": "cypress open",
     "cypress:component": "cypress run --component",
     "cypress:e2e": "cypress run",
     "format": "prettier --write .",
     "format-check": "prettier .",
-    "lint": "eslint --quiet --fix src/**/*",
-    "precypress:open": "npm run build",
+    "lint": "pnpm --filter cypress-codegen lint",
     "prepare": "husky install",
-    "test": "jest"
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.(j|t)sx?$": "ts-jest"
-    },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-    "clearMocks": true
+    "setup-cli": "pnpm i && pnpm build && pnpm i",
+    "test": "pnpm --filter cypress-codegen test"
   }
 }
