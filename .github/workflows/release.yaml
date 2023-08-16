@@ -28,6 +28,8 @@ jobs:
       - name: Install
         run: pnpm install
 
+      - run: echo //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }} >> .npmrc
+
       - run: pnpm publish --recursive --no-git-checks
 
 #      - name: Create Release
