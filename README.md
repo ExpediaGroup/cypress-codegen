@@ -58,7 +58,7 @@ export default defineConfig({
 ```
 
 2. Put all of your custom commands in `cypress/commands` as regular functions.
-3. Run the `cypress-codegen` CLI command, or run any Cypress test!
+3. Run the `cypress-codegen` CLI command, or just open Cypress!
 4. You will notice that the Cypress support file(s) are updated to automatically import all your custom commands!
 
 ## Example
@@ -78,5 +78,7 @@ for more details.
 ## Command Line Usage
 
 You can run `cypress-codegen` in your terminal to generate types for your Cypress project!
-Pass the `--component` and/or `--e2e` flags to run it for a particular testing type. It defaults to both!
-Pass the `--componentSupportFile` and/or `--e2eSupportFile` options if you are using a custom support file location.
+Pass the `--testingType` option to run it for a particular testing type, `component` or `e2e` (defaults to `e2e`).
+
+Currently, only the default `supportFile` config options are supported. See the [docs](https://docs.cypress.io/guides/references/configuration#Testing-Type-Specific-Options) for more details.
+Also, JavaScript usage is not supported. Use TypeScript, it's better!

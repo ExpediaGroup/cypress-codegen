@@ -5,12 +5,12 @@ export default defineConfig({
   screenshotOnRunFailure: false,
   video: false,
 
-  e2e: {
-    setupNodeEvents(on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions) {
-      cypressCodegen(on, config);
-      return config;
-    }
-  },
+  // e2e: {
+  //   setupNodeEvents(on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions) {
+  //     cypressCodegen(on, config);
+  //     return config;
+  //   }
+  // },
 
   component: {
     devServer: {
