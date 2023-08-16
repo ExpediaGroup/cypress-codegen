@@ -50,7 +50,9 @@ jobs:
         run: pnpm setup-cli
 
       - name: Run cypress-codegen
-        run: pnpm cypress-codegen
+        run: |
+          pnpm cypress-codegen --testingType component
+          pnpm cypress-codegen --testingType e2e
 
       - name: Check generated types match git
         run: |
