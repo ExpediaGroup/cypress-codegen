@@ -13,7 +13,7 @@ plugins:
         - scope: no-release
           release: false
   - '@semantic-release/release-notes-generator'
-  - 'semantic-release-pnpm'
+  - '@colbyfayock/semantic-release-pnpm'
   - '@semantic-release/github'
 branches:
   - main
