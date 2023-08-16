@@ -44,6 +44,7 @@
   },
   "scripts": {
     "build": "pnpm clean && tsc",
+    "bump-version": "pnpm version $NEW_VERSION",
     "clean": "rm -rf dist",
     "lint": "eslint --quiet --fix src/**/*",
     "prepack": "pnpm build",

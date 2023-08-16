@@ -1,0 +1,36 @@
+name: Publish
+
+on:
+  release:
+    types:
+      - created
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Setup node and pnpm cache
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install
+
+      - name: Set Version Environment Variable
+        run: |
+          VERSION_TAG=$(echo "${GITHUB_REF}" | cut -d "/" -f3)
+          echo NEW_VERSION="${VERSION_TAG:1}" >> $GITHUB_ENV
+
+      - name: Publish
+        run: |
+          echo //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }} >> .npmrc
+          pnpm --filter cypress-codegen bump-version
+          pnpm --filter cypress-codegen publish --no-git-checks
