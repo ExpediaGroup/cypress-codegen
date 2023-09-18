@@ -25,7 +25,7 @@
     "@babel/parser": "7.22.16",
     "@babel/types": "7.22.19",
     "@babel/generator": "7.22.15",
-    "@types/babel__generator": "7.6.4",
+    "@types/babel__generator": "7.6.5",
     "chalk": "4.1.2",
     "commander": "11.0.0",
     "glob": "10.3.4",
