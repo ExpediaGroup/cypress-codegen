@@ -93,8 +93,8 @@ importers:
         specifier: '>=12'
         version: 12.17.3
       glob:
-        specifier: 10.3.4
-        version: 10.3.4
+        specifier: 10.3.7
+        version: 10.3.7
       prettier:
         specifier: 3.0.3
         version: 3.0.3
@@ -3871,8 +3871,8 @@ packages:
       is-glob: 4.0.3
     dev: true
 
-  /glob@10.3.4:
-    resolution: {integrity: sha512-6LFElP3A+i/Q8XQKEvZjkEWEOTgAIALR9AO2rwT8bgPhDd1anmqDJDZ6lLddI4ehxxxR1S5RIqKe1uapMQfYaQ==}
+  /glob@10.3.7:
+    resolution: {integrity: sha512-wCMbE1m9Nx5yD9LYtgsVWq5VhHlk5WzJirw594qZR6AIvQYuHrdDtIktUVjQItalD53y7dqoedu9xP0u0WaxIQ==}
     engines: {node: '>=16 || 14 >=14.17'}
     hasBin: true
     dependencies:
