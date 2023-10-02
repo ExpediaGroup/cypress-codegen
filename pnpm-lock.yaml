@@ -18,8 +18,8 @@ importers:
         specifier: 6.7.2
         version: 6.7.2(@typescript-eslint/parser@6.7.3)(eslint@8.26.0)(typescript@5.2.2)
       cypress:
-        specifier: 13.2.0
-        version: 13.2.0
+        specifier: 13.3.0
+        version: 13.3.0
       cypress-codegen:
         specifier: workspace:*
         version: link:packages/cypress-codegen
@@ -2716,8 +2716,8 @@ packages:
       yauzl: 2.10.0
     dev: false
 
-  /cypress@13.2.0:
-    resolution: {integrity: sha512-AvDQxBydE771GTq0TR4ZUBvv9m9ffXuB/ueEtpDF/6gOcvFR96amgwSJP16Yhqw6VhmwqspT5nAGzoxxB+D89g==}
+  /cypress@13.3.0:
+    resolution: {integrity: sha512-mpI8qcTwLGiA4zEQvTC/U1xGUezVV4V8HQCOYjlEOrVmU1etVvxOjkCXHGwrlYdZU/EPmUiWfsO3yt1o+Q2bgw==}
     engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
     hasBin: true
     requiresBuild: true
