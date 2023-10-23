@@ -81,8 +81,8 @@ importers:
         specifier: 7.23.0
         version: 7.23.0
       '@types/babel__generator':
-        specifier: 7.6.5
-        version: 7.6.5
+        specifier: 7.6.6
+        version: 7.6.6
       chalk:
         specifier: 4.1.2
         version: 4.1.2
@@ -1473,13 +1473,13 @@ packages:
     dependencies:
       '@babel/parser': 7.23.0
       '@babel/types': 7.23.0
-      '@types/babel__generator': 7.6.5
+      '@types/babel__generator': 7.6.6
       '@types/babel__template': 7.4.1
       '@types/babel__traverse': 7.20.1
     dev: true
 
-  /@types/babel__generator@7.6.5:
-    resolution: {integrity: sha512-h9yIuWbJKdOPLJTbmSpPzkF67e659PbQDba7ifWm5BJ8xTv+sDmS7rFmywkWOvXedGTivCdeGSIIX8WLcRTz8w==}
+  /@types/babel__generator@7.6.6:
+    resolution: {integrity: sha512-66BXMKb/sUWbMdBNdMvajU7i/44RkrA3z/Yt1c7R5xejt8qh84iU54yUWCtm0QwGJlDcf/gg4zd/x4mpLAlb/w==}
     dependencies:
       '@babel/types': 7.23.0
 
