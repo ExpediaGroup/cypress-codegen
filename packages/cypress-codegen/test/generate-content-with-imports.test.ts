@@ -11,19 +11,19 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { readFileSync } from 'fs';
-import { generateContentWithImports } from '../src/generate-content-with-imports';
+import { readFileSync } from "fs";
+import { generateContentWithImports } from "../src/generate-content-with-imports";
 
-jest.mock('fs');
+jest.mock("fs");
 
-const filePath = 'filePath';
+const filePath = "filePath";
 const prettierConfig = {
   singleQuote: true,
-  printWidth: 90
+  printWidth: 90,
 };
 
-describe('generateContentWithImports', () => {
-  it('should generate types when types do not exist', async () => {
+describe("generateContentWithImports", () => {
+  it("should generate types when types do not exist", async () => {
     (readFileSync as jest.Mock).mockReturnValue(`// some comment
 
 import { mount } from 'cypress/react18';
@@ -66,7 +66,7 @@ import('../commands').then(Cypress.Commands.addAll);
 `);
   });
 
-  it('should do nothing when types exist', async () => {
+  it("should do nothing when types exist", async () => {
     (readFileSync as jest.Mock).mockReturnValue(`// some comment
 
 import { mount } from 'cypress/react18';

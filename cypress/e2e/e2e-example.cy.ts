@@ -11,26 +11,26 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-const expectedText = 'Kitchen Sink';
+const expectedText = "Kitchen Sink";
 
-describe('Example Test', () => {
+describe("Example Test", () => {
   beforeEach(() => {
-    cy.visit('https://example.cypress.io/');
+    cy.visit("https://example.cypress.io/");
   });
 
-  it('should dynamically import custom commands from functions', () => {
+  it("should dynamically import custom commands from functions", () => {
     cy.functionExample(expectedText);
   });
 
-  it('should dynamically import custom commands from arrow functions', () => {
+  it("should dynamically import custom commands from arrow functions", () => {
     cy.arrowFunctionExample(expectedText);
   });
 
-  it('should dynamically import nested custom commands', () => {
+  it("should dynamically import nested custom commands", () => {
     cy.nestedExample(expectedText);
   });
 
-  it('should chain custom commands', () => {
+  it("should chain custom commands", () => {
     cy.log(expectedText)
       .functionExample(expectedText)
       .arrowFunctionExample(expectedText)

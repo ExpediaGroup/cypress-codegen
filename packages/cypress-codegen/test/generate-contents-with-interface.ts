@@ -11,20 +11,20 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { generateContentsWithInterface } from '../src/generate-contents-with-interface';
+import { generateContentsWithInterface } from "../src/generate-contents-with-interface";
 
-import { readFileSync } from 'fs';
+import { readFileSync } from "fs";
 
-jest.mock('fs');
+jest.mock("fs");
 
-const filePath = 'filePath';
+const filePath = "filePath";
 const prettierConfig = {
   singleQuote: true,
-  printWidth: 90
+  printWidth: 90,
 };
 
-describe('generateContentsWithInterface', () => {
-  it('should generate types when types do not exist', async () => {
+describe("generateContentsWithInterface", () => {
+  it("should generate types when types do not exist", async () => {
     (readFileSync as jest.Mock).mockReturnValue(`// some comment
 
 export function functionExampleOneInput(input1: string) {
@@ -47,7 +47,10 @@ export const arrowFunctionExample = (input1: string) => {
   cy.log('Here is a custom command from an arrow function!').log(input);
 };
 `);
-    const result = await generateContentsWithInterface(filePath, prettierConfig);
+    const result = await generateContentsWithInterface(
+      filePath,
+      prettierConfig,
+    );
     expect(result).toEqual(`// some comment
 
 export function functionExampleOneInput(input1: string) {
@@ -85,7 +88,7 @@ declare global {
 `);
   });
 
-  it('should generate types when types exist', async () => {
+  it("should generate types when types exist", async () => {
     (readFileSync as jest.Mock).mockReturnValue(`// some comment
 
 export function functionExampleOneInput(input1: string) {
@@ -118,7 +121,10 @@ declare global {
   }
 }
 `);
-    const result = await generateContentsWithInterface(filePath, prettierConfig);
+    const result = await generateContentsWithInterface(
+      filePath,
+      prettierConfig,
+    );
     expect(result).toEqual(`// some comment
 
 export function functionExampleOneInput(input1: string) {
@@ -156,7 +162,7 @@ declare global {
 `);
   });
 
-  it('should preserve formatting', async () => {
+  it("should preserve formatting", async () => {
     (readFileSync as jest.Mock).mockReturnValue(`// some comment
 
 export function functionExampleOneInput(input1: string) {
@@ -181,7 +187,10 @@ export const arrowFunctionExample = (input1: string) => {
   cy.log('Here is a custom command from an arrow function!').log(input);
 };
 `);
-    const result = await generateContentsWithInterface(filePath, prettierConfig);
+    const result = await generateContentsWithInterface(
+      filePath,
+      prettierConfig,
+    );
     expect(result).toEqual(`// some comment
 
 export function functionExampleOneInput(input1: string) {
@@ -221,14 +230,17 @@ declare global {
 `);
   });
 
-  it('should handle generic types properly', async () => {
+  it("should handle generic types properly", async () => {
     (readFileSync as jest.Mock).mockReturnValue(`// some comment
 
 export function functionExampleGenericType(input1: string) {
   cy.log<GenericType>('Here is a generic type!');
 }
 `);
-    const result = await generateContentsWithInterface(filePath, prettierConfig);
+    const result = await generateContentsWithInterface(
+      filePath,
+      prettierConfig,
+    );
     expect(result).toEqual(`// some comment
 
 export function functionExampleGenericType(input1: string) {
@@ -246,21 +258,26 @@ declare global {
 `);
   });
 
-  it('should throw error for object-destructured input', async () => {
+  it("should throw error for object-destructured input", async () => {
     (readFileSync as jest.Mock).mockReturnValue(`
 export const objectDestructureExample = ({ input1, input2 }: { input1: string; input2: string }) => {
   cy.log(input1);
   cy.log(input2);
 };
 `);
-    await expect(generateContentsWithInterface(filePath, prettierConfig)).rejects.toThrowError();
+    await expect(
+      generateContentsWithInterface(filePath, prettierConfig),
+    ).rejects.toThrowError();
   });
 
-  it('should handle file with only exports', async () => {
+  it("should handle file with only exports", async () => {
     (readFileSync as jest.Mock).mockReturnValue(`export * from './some-file';
 export * from './some-other-file';
 `);
-    const result = await generateContentsWithInterface(filePath, prettierConfig);
+    const result = await generateContentsWithInterface(
+      filePath,
+      prettierConfig,
+    );
     expect(result).toEqual(`export * from './some-file';
 export * from './some-other-file';
 `);
