@@ -1,18 +1,18 @@
 version: 2
 updates:
-  - package-ecosystem: 'npm'
-    directory: '/'
+  - package-ecosystem: "npm"
+    directory: "/"
     schedule:
-      interval: 'weekly'
+      interval: "weekly"
     groups:
       babel:
         patterns:
-          - '@babel/*'
+          - "@babel/*"
     reviewers:
-      - '@ExpediaGroup/cypress-codegen-admins'
-  - package-ecosystem: 'github-actions'
-    directory: '/'
+      - "@ExpediaGroup/cypress-codegen-admins"
+  - package-ecosystem: "github-actions"
+    directory: "/"
     schedule:
-      interval: 'weekly'
+      interval: "weekly"
     reviewers:
-      - '@ExpediaGroup/cypress-codegen-admins'
+      - "@ExpediaGroup/cypress-codegen-admins"

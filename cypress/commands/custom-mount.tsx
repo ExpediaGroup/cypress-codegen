@@ -1,10 +1,10 @@
-import * as React from 'react';
+import * as React from "react";
 
 export const customMount = (Component: React.FC) => {
   cy.mount(
     <div>
       <Component />
-    </div>
+    </div>,
   );
 };
 

@@ -8,11 +8,11 @@ A [Cypress](https://www.cypress.io/) plugin and CLI tool which automatically add
 
 ## Table of Contents
 
-- [Why Do I Need This Plugin?](#why-do-i-need-this-plugin)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Example](#example)
-- [Configuration](#configuration)
+-   [Why Do I Need This Plugin?](#why-do-i-need-this-plugin)
+-   [Installation](#installation)
+-   [Usage](#usage)
+-   [Example](#example)
+-   [Configuration](#configuration)
 
 ## Why Do I Need This Plugin?
 
@@ -33,27 +33,27 @@ Model your Cypress project exactly like [the one in this repository](https://git
 1. Add the required plugin code to `cypress.config.ts` like so:
 
 ```ts
-import { cypressCodegen } from 'cypress-codegen';
-import { defineConfig } from 'cypress';
+import { cypressCodegen } from "cypress-codegen";
+import { defineConfig } from "cypress";
 
 export default defineConfig({
-  e2e: {
-    setupNodeEvents(on, config) {
-      cypressCodegen(on, config);
-      return config;
-    }
-  },
-
-  component: {
-    setupNodeEvents(on, config) {
-      cypressCodegen(on, config);
-      return config;
+    e2e: {
+        setupNodeEvents(on, config) {
+            cypressCodegen(on, config);
+            return config;
+        },
     },
-    devServer: {
-      framework: 'react',
-      bundler: 'vite'
-    }
-  }
+
+    component: {
+        setupNodeEvents(on, config) {
+            cypressCodegen(on, config);
+            return config;
+        },
+        devServer: {
+            framework: "react",
+            bundler: "vite",
+        },
+    },
 });
 ```
 
