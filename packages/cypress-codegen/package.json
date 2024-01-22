@@ -21,7 +21,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@babel/core": "7.23.6",
+    "@babel/core": "7.23.7",
     "@babel/parser": "7.23.6",
     "@babel/types": "7.23.6",
     "@babel/generator": "7.23.6",
