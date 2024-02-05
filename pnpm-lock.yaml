@@ -100,8 +100,8 @@ importers:
         version: 3.2.4
     devDependencies:
       '@swc/jest':
-        specifier: 0.2.31
-        version: 0.2.31(@swc/core@1.3.107)
+        specifier: 0.2.36
+        version: 0.2.36(@swc/core@1.3.107)
       '@types/glob':
         specifier: 8.1.0
         version: 8.1.0
@@ -1515,7 +1515,7 @@ packages:
       '@swc/helpers':
         optional: true
     dependencies:
-      '@swc/counter': 0.1.2
+      '@swc/counter': 0.1.3
       '@swc/types': 0.1.5
     optionalDependencies:
       '@swc/core-darwin-arm64': 1.3.107
@@ -1530,18 +1530,19 @@ packages:
       '@swc/core-win32-x64-msvc': 1.3.107
     dev: true
 
-  /@swc/counter@0.1.2:
-    resolution: {integrity: sha512-9F4ys4C74eSTEUNndnER3VJ15oru2NumfQxS8geE+f3eB5xvfxpWyqE5XlVnxb/R14uoXi6SLbBwwiDSkv+XEw==}
+  /@swc/counter@0.1.3:
+    resolution: {integrity: sha512-e2BR4lsJkkRlKZ/qCHPw9ZaSxc0MVUd7gtbtaB7aMvHeJVYe8sOB8DBZkP2DtISHGSku9sCK6T6cnY0CtXrOCQ==}
     dev: true
 
-  /@swc/jest@0.2.31(@swc/core@1.3.107):
-    resolution: {integrity: sha512-Gh0Ste380O8KUY1IqsKr+aOvqqs2Loa+WcWWVNwl+lhXqOWK1iTFAP1K0IDfLqAuFP68+D/PxcpBJn21e6Quvw==}
+  /@swc/jest@0.2.36(@swc/core@1.3.107):
+    resolution: {integrity: sha512-8X80dp81ugxs4a11z1ka43FPhP+/e+mJNXJSxiNYk8gIX/jPBtY4gQTrKu/KIoco8bzKuPI5lUxjfLiGsfvnlw==}
     engines: {npm: '>= 7.0.0'}
     peerDependencies:
       '@swc/core': '*'
     dependencies:
       '@jest/create-cache-key-function': 29.7.0
       '@swc/core': 1.3.107
+      '@swc/counter': 0.1.3
       jsonc-parser: 3.2.0
     dev: true
 
