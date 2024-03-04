@@ -1,6 +1,6 @@
 {
   "name": "cypress-codegen",
-  "packageManager": "pnpm@8.6.12",
+  "packageManager": "pnpm@8.15.4",
   "devDependencies": {
     "@total-typescript/ts-reset": "0.5.1",
     "@types/react": "18.0.24",
