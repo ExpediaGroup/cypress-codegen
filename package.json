@@ -4,7 +4,7 @@
   "devDependencies": {
     "@total-typescript/ts-reset": "0.5.1",
     "@types/react": "18.0.24",
-    "@typescript-eslint/eslint-plugin": "6.21.0",
+    "@typescript-eslint/eslint-plugin": "7.1.1",
     "cypress": "13.6.6",
     "cypress-codegen": "workspace:*",
     "eslint": "8.57.0",
