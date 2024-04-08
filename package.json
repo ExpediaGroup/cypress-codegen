@@ -3,9 +3,9 @@
   "packageManager": "pnpm@8.15.6",
   "devDependencies": {
     "@total-typescript/ts-reset": "0.5.1",
-    "@types/react": "18.2.73",
-    "@typescript-eslint/eslint-plugin": "7.4.0",
-    "cypress": "13.7.1",
+    "@types/react": "18.2.74",
+    "@typescript-eslint/eslint-plugin": "7.5.0",
+    "cypress": "13.7.2",
     "cypress-codegen": "workspace:*",
     "eslint": "8.57.0",
     "eslint-plugin-cypress": "2.15.1",
@@ -18,9 +18,9 @@
     "husky": "9.0.11",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "semantic-release": "23.0.6",
-    "typescript": "5.4.3",
-    "vite": "5.2.7"
+    "semantic-release": "23.0.7",
+    "typescript": "5.4.4",
+    "vite": "5.2.8"
   },
   "scripts": {
     "build": "pnpm --filter cypress-codegen build",
