@@ -5,7 +5,7 @@
     "@total-typescript/ts-reset": "0.5.1",
     "@types/react": "18.2.79",
     "@typescript-eslint/eslint-plugin": "7.7.0",
-    "cypress": "13.7.3",
+    "cypress": "13.8.0",
     "cypress-codegen": "workspace:*",
     "eslint": "8.57.0",
     "eslint-plugin-cypress": "2.15.2",
@@ -20,7 +20,7 @@
     "react-dom": "18.2.0",
     "semantic-release": "23.0.8",
     "typescript": "5.4.5",
-    "vite": "5.2.9"
+    "vite": "5.2.10"
   },
   "scripts": {
     "build": "pnpm --filter cypress-codegen build",
