@@ -20,7 +20,7 @@ export const generateContentWithExports = async (
   filePaths: string[],
   prettierConfig: Options,
 ) => {
-  const exportStatements = filePaths.map((filePath) => {
+  const exportStatements = filePaths.sort().map((filePath) => {
     const { dir, name } = parse(filePath);
     const pathWithoutExtension = join(dir, name);
     const relativePath = `./${relative(
@@ -29,6 +29,9 @@ export const generateContentWithExports = async (
     )}`;
     return t.exportAllDeclaration(t.stringLiteral(relativePath));
   });
+  if (!exportStatements[0]) {
+    throw new Error("No export statements found.");
+  }
   t.addComment(
     exportStatements[0],
     "leading",

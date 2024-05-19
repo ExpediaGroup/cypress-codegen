@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
-    "declaration": true,
-    "module": "CommonJS",
-    "sourceMap": true,
-    "strict": true,
-    "target": "ES6",
-    "lib": ["ES2019", "DOM"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "lib": ["ESNext", "DOM"],
     "jsx": "react",
     "skipLibCheck": true,
-    "types": ["cypress", "jest"]
-  },
-  "exclude": ["dist", "node_modules"]
+    "types": ["cypress", "jest"],
+    "noEmit": true,
+    "noImplicitAny": true,
+    "noUncheckedIndexedAccess": true,
+    "strict": true,
+    "target": "esnext"
+  }
 }
