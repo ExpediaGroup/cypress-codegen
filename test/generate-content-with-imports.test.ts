@@ -15,6 +15,7 @@ import { readFileSync } from "fs";
 import { generateContentWithImports } from "../src/generate-content-with-imports";
 
 jest.mock("fs");
+import { expect } from "@jest/globals";
 
 const filePath = "filePath";
 const prettierConfig = {
