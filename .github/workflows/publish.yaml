@@ -1,36 +1,31 @@
 name: Publish
 
 on:
-  release:
-    types:
-      - created
+  push:
+    branches:
+      - main
 
 jobs:
   publish:
+    name: Semantic Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v3
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
 
-      - name: Setup node and pnpm cache
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version-file: .nvmrc
-          cache: pnpm
+          node-version: latest
 
-      - name: Install
-        run: pnpm install
+      - name: Install Dependencies
+        run: bun install
 
-      - name: Set Version Environment Variable
-        run: |
-          VERSION_TAG=$(echo "${GITHUB_REF}" | cut -d "/" -f3)
-          echo NEW_VERSION="${VERSION_TAG:1}" >> $GITHUB_ENV
-
-      - name: Publish
-        run: |
-          echo //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }} >> .npmrc
-          pnpm --filter cypress-codegen bump-version
-          pnpm --filter cypress-codegen publish --no-git-checks
+      - name: Create Release
+        run: bunx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

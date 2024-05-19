@@ -1,11 +1,15 @@
 {
   "compilerOptions": {
-    "module": "CommonJS",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "lib": ["ESNext", "DOM"],
+    "jsx": "react",
+    "skipLibCheck": true,
+    "types": ["cypress", "jest"],
+    "noEmit": true,
+    "noImplicitAny": true,
     "noUncheckedIndexedAccess": true,
     "strict": true,
-    "target": "ES6",
-    "lib": ["ES2019", "DOM"],
-    "jsx": "react",
-    "types": ["cypress"]
+    "target": "esnext"
   }
 }

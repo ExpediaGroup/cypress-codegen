@@ -12,8 +12,8 @@ limitations under the License.
 */
 
 import { generateContentsWithInterface } from "../src/generate-contents-with-interface";
-
 import { readFileSync } from "fs";
+import { expect } from "@jest/globals";
 
 jest.mock("fs");
 

@@ -28,8 +28,6 @@ npm i --save-dev cypress-codegen
 
 ## Plugin Usage
 
-Model your Cypress project exactly like [the one in this repository](https://github.com/ExpediaGroup/cypress-codegen/blob/main/cypress.config.ts)!
-
 1. Add the required plugin code to `cypress.config.ts` like so:
 
 ```ts
