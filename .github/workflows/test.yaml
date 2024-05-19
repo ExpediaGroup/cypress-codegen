@@ -37,13 +37,13 @@ jobs:
       - name: Install
         run: bun install
 
-      - name: Install and setup bin
-        run: bun setup-cli
+      - name: Build
+        run: bun run build
 
       - name: Run cypress-codegen
         run: |
-          bun cypress-codegen --testingType component
-          bun cypress-codegen --testingType e2e
+          bun src/cli.ts --testingType component
+          bun src/cli.ts --testingType e2e
 
       - name: Check generated types match git
         run: |
