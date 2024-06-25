@@ -1,10 +1,10 @@
 {
   "name": "cypress-codegen",
   "packageManager": "bun@1.1.17",
-  "main": "dist/index.mjs",
-  "types": "dist/index.d.mts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "bin": {
-    "cypress-codegen": "dist/cli.mjs"
+    "cypress-codegen": "dist/cli.js"
   },
   "files": [
     "dist",
@@ -24,7 +24,7 @@
     "@babel/types": "7.24.7",
     "@babel/generator": "7.24.7",
     "@types/babel__generator": "7.6.8",
-    "chalk": "5.3.0",
+    "chalk": "4.1.2",
     "commander": "12.1.0",
     "glob": "10.4.2",
     "prettier": "3.3.2"
@@ -52,7 +52,7 @@
     "vite": "5.3.1"
   },
   "scripts": {
-    "build": "tsup src/index.ts src/cli.ts --clean --dts --format esm --splitting false",
+    "build": "tsup src/index.ts src/cli.ts --clean --dts --format cjs",
     "cypress:open": "cypress open",
     "cypress:component": "cypress run --component",
     "cypress:e2e": "cypress run",

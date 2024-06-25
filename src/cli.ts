@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /* eslint-disable no-console */
-import chalk from "chalk";
+import * as chalk from "chalk";
 import { program, Option } from "commander";
 import { codegen } from "./codegen";
 
