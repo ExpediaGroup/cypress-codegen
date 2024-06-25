@@ -17,4 +17,5 @@ plugins:
   - "@semantic-release/release-notes-generator"
 branches:
   - main
-  - alpha
+  - name: alpha
+    prerelease: true
