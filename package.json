@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "cypress-codegen": "dist/cli.cjs"
+    "cypress-codegen": "dist/cli.js"
   },
   "files": [
     "dist",
