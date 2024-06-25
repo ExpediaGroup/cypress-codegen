@@ -1,10 +1,10 @@
 {
   "name": "cypress-codegen",
   "packageManager": "bun@1.1.17",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/index.mjs",
+  "types": "dist/index.d.mts",
   "bin": {
-    "cypress-codegen": "dist/cli.js"
+    "cypress-codegen": "dist/cli.mjs"
   },
   "files": [
     "dist",
@@ -52,7 +52,7 @@
     "vite": "5.3.1"
   },
   "scripts": {
-    "build": "tsup src/index.ts src/cli.ts --clean --dts",
+    "build": "tsup src/index.ts src/cli.ts --clean --dts --format esm",
     "cypress:open": "cypress open",
     "cypress:component": "cypress run --component",
     "cypress:e2e": "cypress run",
