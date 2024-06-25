@@ -52,7 +52,7 @@
     "vite": "5.3.1"
   },
   "scripts": {
-    "build": "tsup src/index.ts src/cli.ts --clean --dts --format esm",
+    "build": "tsup src/index.ts src/cli.ts --clean --dts --format esm --splitting false",
     "cypress:open": "cypress open",
     "cypress:component": "cypress run --component",
     "cypress:e2e": "cypress run",
