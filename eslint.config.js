@@ -1,7 +1,9 @@
-import typescriptEslint from "typescript-eslint";
-import cypressEslintPlugin from "eslint-plugin-cypress";
+/* eslint-disable @typescript-eslint/no-require-imports */
 
-export default [
+const typescriptEslint = require("typescript-eslint");
+const cypressEslintPlugin = require("eslint-plugin-cypress");
+
+module.exports = [
   ...typescriptEslint.configs.recommended,
   {
     files: ["**/*.ts", "**/*.tsx"],

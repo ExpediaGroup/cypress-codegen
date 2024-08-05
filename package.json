@@ -1,7 +1,7 @@
 {
   "name": "cypress-codegen",
   "packageManager": "bun@1.1.17",
-  "type": "module",
+  "type": "commonjs",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
