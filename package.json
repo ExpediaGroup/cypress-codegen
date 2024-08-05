@@ -1,6 +1,7 @@
 {
   "name": "cypress-codegen",
   "packageManager": "bun@1.1.17",
+  "type": "commonjs",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
@@ -48,7 +49,7 @@
     "react-dom": "18.3.1",
     "tsup": "8.2.4",
     "typescript": "5.5.4",
-    "typescript-eslint": "7.18.0",
+    "typescript-eslint": "8.0.0",
     "vite": "5.3.5"
   },
   "scripts": {

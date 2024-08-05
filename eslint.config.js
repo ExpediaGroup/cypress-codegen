@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/no-require-imports */
 
 const typescriptEslint = require("typescript-eslint");
 const cypressEslintPlugin = require("eslint-plugin-cypress");
