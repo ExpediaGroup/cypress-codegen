@@ -50,7 +50,7 @@
     "tsup": "8.3.5",
     "typescript": "5.7.2",
     "typescript-eslint": "8.18.1",
-    "vite": "6.0.5"
+    "vite": "6.0.9"
   },
   "scripts": {
     "build": "tsup src/index.ts src/cli.ts --clean --dts --format cjs",
