@@ -8,11 +8,11 @@ A [Cypress](https://www.cypress.io/) plugin and CLI tool which automatically add
 
 ## Table of Contents
 
--   [Why Do I Need This Plugin?](#why-do-i-need-this-plugin)
--   [Installation](#installation)
--   [Usage](#usage)
--   [Example](#example)
--   [Configuration](#configuration)
+- [Why Do I Need This Plugin?](#why-do-i-need-this-plugin)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Example](#example)
+- [Configuration](#configuration)
 
 ## Why Do I Need This Plugin?
 
