@@ -1,6 +1,6 @@
 {
   "name": "cypress-codegen",
-  "packageManager": "bun@1.1.21",
+  "packageManager": "bun@1.2.2",
   "type": "commonjs",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -21,10 +21,9 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@babel/core": "7.26.8",
+    "@babel/generator": "7.26.8",
     "@babel/parser": "7.26.8",
     "@babel/types": "7.26.8",
-    "@babel/generator": "7.26.8",
-    "@types/babel__generator": "7.6.8",
     "chalk": "4.1.2",
     "commander": "13.1.0",
     "glob": "11.0.1",
