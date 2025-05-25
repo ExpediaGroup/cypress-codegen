@@ -25,7 +25,7 @@
     "@babel/parser": "7.27.0",
     "@babel/types": "7.27.0",
     "chalk": "4.1.2",
-    "commander": "13.1.0",
+    "commander": "14.0.0",
     "glob": "11.0.1",
     "prettier": "3.5.3"
   },
