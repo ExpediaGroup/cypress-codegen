@@ -267,7 +267,7 @@ export const objectDestructureExample = ({ input1, input2 }: { input1: string; i
 `);
     await expect(
       generateContentsWithInterface(filePath, prettierConfig),
-    ).rejects.toThrowError();
+    ).rejects.toThrow();
   });
 
   it("should handle file with only exports", async () => {
