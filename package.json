@@ -61,7 +61,14 @@
   },
   "jest": {
     "transform": {
-      "^.+\\.(j|t)sx?$": "@swc/jest"
+      "^.+\\.(t|j)sx?$": [
+        "@swc/jest",
+        {
+          "jsc": {
+            "target": "esnext"
+          }
+        }
+      ]
     },
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
     "clearMocks": true
