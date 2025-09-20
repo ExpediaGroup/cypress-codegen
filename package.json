@@ -20,9 +20,9 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@babel/core": "7.28.0",
+    "@babel/core": "7.28.4",
     "chalk": "4.1.2",
-    "commander": "14.0.0",
+    "commander": "14.0.1",
     "glob": "11.0.3",
     "prettier": "3.6.2"
   },
@@ -32,20 +32,20 @@
   "devDependencies": {
     "@swc/jest": "0.2.39",
     "@total-typescript/ts-reset": "0.6.1",
-    "@types/react": "19.1.9",
+    "@types/react": "19.1.13",
     "@types/jest": "30.0.0",
-    "@types/node": "24.1.0",
-    "cypress": "15.0.0",
+    "@types/node": "24.5.2",
+    "cypress": "15.2.0",
     "husky": "9.1.7",
-    "jest": "30.0.5",
-    "eslint": "9.32.0",
-    "eslint-plugin-cypress": "5.1.0",
+    "jest": "30.1.3",
+    "eslint": "9.36.0",
+    "eslint-plugin-cypress": "5.1.1",
     "react": "19.1.1",
     "react-dom": "19.1.1",
     "tsup": "8.5.0",
     "typescript": "5.9.2",
-    "typescript-eslint": "8.38.0",
-    "vite": "7.0.7"
+    "typescript-eslint": "8.44.0",
+    "vite": "7.1.6"
   },
   "scripts": {
     "build": "tsup src/index.ts src/cli.ts --clean --dts --format cjs",
