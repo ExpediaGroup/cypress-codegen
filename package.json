@@ -48,7 +48,7 @@
     "vite": "7.1.6"
   },
   "scripts": {
-    "build": "tsup src/index.ts src/cli.ts --clean --dts --format cjs",
+    "build": "bunx tsup src/index.ts src/cli.ts --clean --dts --format cjs",
     "cypress:open": "cypress open",
     "cypress:component": "cypress run --component",
     "cypress:e2e": "cypress run",
