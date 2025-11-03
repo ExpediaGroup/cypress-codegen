@@ -12,7 +12,7 @@ limitations under the License.
 */
 
 import { generateContentWithExports } from "../src/generate-content-with-exports";
-import { expect } from "@jest/globals";
+import { describe, expect, it } from "bun:test";
 
 const filePaths = [
   "cypress/commands/file/path/1.tsx",

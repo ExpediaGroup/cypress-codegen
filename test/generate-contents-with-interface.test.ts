@@ -12,10 +12,12 @@ limitations under the License.
 */
 
 import { generateContentsWithInterface } from "../src/generate-contents-with-interface";
-import { readFileSync } from "fs";
-import { expect } from "@jest/globals";
+import { describe, expect, it, mock } from "bun:test";
 
-jest.mock("fs");
+const readFileSyncMock = mock();
+mock.module("fs", () => ({
+  readFileSync: readFileSyncMock,
+}));
 
 const filePath = "filePath";
 const prettierConfig = {
@@ -25,7 +27,7 @@ const prettierConfig = {
 
 describe("generateContentsWithInterface", () => {
   it("should generate types when types do not exist", async () => {
-    (readFileSync as jest.Mock).mockReturnValue(`// some comment
+    readFileSyncMock.mockReturnValue(`// some comment
 
 export function functionExampleOneInput(input1: string) {
   cy.log('Here is a custom command!');
@@ -89,7 +91,7 @@ declare global {
   });
 
   it("should generate types when types exist", async () => {
-    (readFileSync as jest.Mock).mockReturnValue(`// some comment
+    readFileSyncMock.mockReturnValue(`// some comment
 
 export function functionExampleOneInput(input1: string) {
   cy.log('Here is a custom command!');
@@ -163,7 +165,7 @@ declare global {
   });
 
   it("should preserve formatting", async () => {
-    (readFileSync as jest.Mock).mockReturnValue(`// some comment
+    readFileSyncMock.mockReturnValue(`// some comment
 
 export function functionExampleOneInput(input1: string) {
   cy.log('Here is a custom command!')
@@ -231,7 +233,7 @@ declare global {
   });
 
   it("should handle generic types properly", async () => {
-    (readFileSync as jest.Mock).mockReturnValue(`// some comment
+    readFileSyncMock.mockReturnValue(`// some comment
 
 export function functionExampleGenericType(input1: string) {
   cy.log<GenericType>('Here is a generic type!');
@@ -259,7 +261,7 @@ declare global {
   });
 
   it("should throw error for object-destructured input", async () => {
-    (readFileSync as jest.Mock).mockReturnValue(`
+    readFileSyncMock.mockReturnValue(`
 export const objectDestructureExample = ({ input1, input2 }: { input1: string; input2: string }) => {
   cy.log(input1);
   cy.log(input2);
@@ -271,7 +273,7 @@ export const objectDestructureExample = ({ input1, input2 }: { input1: string; i
   });
 
   it("should handle file with only exports", async () => {
-    (readFileSync as jest.Mock).mockReturnValue(`export * from './some-file';
+    readFileSyncMock.mockReturnValue(`export * from './some-file';
 export * from './some-other-file';
 `);
     const result = await generateContentsWithInterface(

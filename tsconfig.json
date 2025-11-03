@@ -6,7 +6,7 @@
     "lib": ["ESNext", "DOM"],
     "jsx": "react",
     "skipLibCheck": true,
-    "types": ["cypress", "jest"],
+    "types": ["bun", "cypress"],
     "noEmit": true,
     "noImplicitAny": true,
     "noUncheckedIndexedAccess": true,
