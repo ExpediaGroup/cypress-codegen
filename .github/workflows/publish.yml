@@ -6,6 +6,10 @@ on:
       - main
       - alpha
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   publish:
     name: Semantic Release
@@ -22,8 +26,10 @@ jobs:
       - name: Install
         run: bun install
 
+      - name: Setup node for npm publish
+        uses: actions/setup-node@v6
+
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
