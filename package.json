@@ -1,6 +1,6 @@
 {
   "name": "cypress-codegen",
-  "packageManager": "bun@1.3.2",
+  "packageManager": "bun@1.3.5",
   "type": "commonjs",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -32,9 +32,9 @@
   "devDependencies": {
     "@total-typescript/ts-reset": "0.6.1",
     "@types/babel__generator": "7.27.0",
-    "@types/bun": "1.3.4",
+    "@types/bun": "1.3.5",
     "@types/react": "19.2.7",
-    "cypress": "15.7.1",
+    "cypress": "15.8.1",
     "husky": "9.1.7",
     "eslint": "9.39.2",
     "eslint-plugin-cypress": "5.2.0",
@@ -42,7 +42,7 @@
     "react-dom": "19.2.3",
     "tsup": "8.5.1",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.50.0",
+    "typescript-eslint": "8.51.0",
     "vite": "7.3.0"
   },
   "scripts": {
