@@ -37,7 +37,7 @@
     "cypress": "15.9.0",
     "husky": "9.1.7",
     "eslint": "10.0.0",
-    "eslint-plugin-cypress": "5.2.1",
+    "eslint-plugin-cypress": "6.1.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "tsup": "8.5.1",
