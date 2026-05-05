@@ -49,8 +49,8 @@ jobs:
 
       - name: Run cypress-codegen
         run: |
-          bun src/cli.ts --testingType component
-          bun src/cli.ts --testingType e2e
+          bun dist/cli.mjs --testingType component
+          bun dist/cli.mjs --testingType e2e
 
       - name: Check generated types match git
         run: |

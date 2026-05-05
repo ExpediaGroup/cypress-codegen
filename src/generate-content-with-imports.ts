@@ -13,7 +13,7 @@ limitations under the License.
 
 import { parse } from "@babel/parser";
 import * as t from "@babel/types";
-import generate from "@babel/generator";
+import { generate } from "@babel/generator";
 import { readFileSync } from "fs";
 import { resolve } from "path";
 import { format, Options } from "prettier";

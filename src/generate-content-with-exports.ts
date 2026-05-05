@@ -12,7 +12,7 @@ limitations under the License.
 */
 
 import * as t from "@babel/types";
-import generate from "@babel/generator";
+import { generate } from "@babel/generator";
 import { format, Options } from "prettier";
 import { join, parse, relative } from "path";
 
