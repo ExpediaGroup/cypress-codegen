@@ -18,6 +18,9 @@ import type {
   FunctionDeclaration,
   FunctionExpression,
   Identifier,
+  NumericLiteral,
+  StringLiteral,
+  BooleanLiteral,
   VariableDeclaration,
 } from "@babel/types";
 import * as t from "@babel/types";
@@ -96,13 +99,35 @@ interface CustomCommand {
   parameters: Identifier[];
 }
 
+const inferTypeAnnotationFromDefault = (
+  right: AssignmentPattern["right"],
+): Identifier["typeAnnotation"] => {
+  if (t.isNumericLiteral(right as NumericLiteral)) {
+    return t.tsTypeAnnotation(t.tsNumberKeyword());
+  }
+  if (t.isStringLiteral(right as StringLiteral)) {
+    return t.tsTypeAnnotation(t.tsStringKeyword());
+  }
+  if (t.isBooleanLiteral(right as BooleanLiteral)) {
+    return t.tsTypeAnnotation(t.tsBooleanKeyword());
+  }
+  return null;
+};
+
 const generateOptionalParameterFromInitializer = ({
   left,
-}: AssignmentPattern): Identifier => ({
-  ...(left as Identifier),
-  type: "Identifier",
-  optional: true,
-});
+  right,
+}: AssignmentPattern): Identifier => {
+  const id = left as Identifier;
+  const typeAnnotation =
+    id.typeAnnotation ?? inferTypeAnnotationFromDefault(right);
+  return {
+    ...id,
+    type: "Identifier",
+    optional: true,
+    typeAnnotation,
+  };
+};
 
 const generateInterface = (
   customCommands: CustomCommand[],
