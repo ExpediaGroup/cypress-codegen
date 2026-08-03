@@ -25,9 +25,9 @@ export const codegen = async (config: Partial<Cypress.PluginConfigOptions>) => {
     nodir: true,
     ignore: indexTsFile,
   });
-  const prettierConfig = (await resolveConfig(process.cwd())) ?? {};
 
   const commandsIndexPath = "cypress/commands/index.ts";
+  const prettierConfig = (await resolveConfig(resolve(commandsIndexPath))) ?? {};
   const exportFileContents = await generateContentWithExports(
     filePaths,
     prettierConfig,
