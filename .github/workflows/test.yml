@@ -83,7 +83,7 @@ jobs:
         run: bun install
 
       - name: Integration Tests
-        uses: cypress-io/github-action@v7.4.1
+        uses: cypress-io/github-action@v7.4.3
         with:
           install: false
           build: bun run build
